@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+}
+
+.canvas-container {
+  z-index: -1;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  -webkit-user-select: initial !important;
+  overflow: hidden;
+}
+
+.controller,
+.color {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.controller {
+  top: 10px;
+}
+
+.controller button {
+  padding: 2px 6px;
+}
+
+.color {
+  top: 35px;
+}
+
+.color button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  color: #ffffff;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}

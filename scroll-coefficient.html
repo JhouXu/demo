@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ch-ZN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 100%;
+        height: 1000vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+  </body>
+  <script>
+    window.onscroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      console.log(scrollTop, scrollHeight, clientHeight);
+
+      const scrolled = scrollTop / (scrollHeight - clientHeight);
+      console.log(scrolled);
+    };
+  </script>
+</html>

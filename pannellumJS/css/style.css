@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.loading {
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #1d2630;
+}
+
+.loading .spinner-box .spinner-box-icon {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #fb5b53;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s ease-in-out 0s infinite, colors 0.8s linear 0s infinite alternate;
+}
+
+.container .pnlm-render-container {
+}
+
+/* .container .pnlm-render-container .c-info {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #096;
+} */
+
+/* .c-info {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #096;
+}
+
+.c-info::before {
+  display: block;
+  white-space: nowrap;
+  width: 100%;
+  color: #fff;
+  text-transform: capitalize;
+  content: "this is info";
+} */
+
+.pnlm-container {
+  background-image: none;
+  background-color: #f1f3f4;
+}
+
+.pnlm-about-msg,
+.pnlm-load-box {
+  display: none !important;
+}
+
+/* animation keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes colors {
+  from {
+    border-color: transparent #fb5b53 #fb5b53;
+  }
+
+  to {
+    border-color: transparent #3ff9dc #3ff9dc;
+  }
+}
