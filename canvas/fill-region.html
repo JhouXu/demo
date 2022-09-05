@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cn-ZN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fill Region</title>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="canvas" width="800" height="375"></canvas>
+    </div>
+  </body>
+  <script>
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    // ctx.globalCompositeOperation = "source-in";
+
+    var img = new Image();
+    img.src = "./images/jail_cell_bars.png";
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0);
+      ctx.fillStyle = "red";
+    };
+
+    var img1 = new Image();
+    img1.src = "./images/jail_cell_bars.png";
+    img1.onload = () => {
+      ctx.drawImage(img1, 400, 0);
+      ctx.globalCompositeOperation = "source-in";
+      ctx.fillStyle = "skyblue";
+      ctx.fillRect(400, 0, canvas.width, canvas.height);
+    };
+  </script>
+</html>
