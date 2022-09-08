@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/irr/index",
+    "pages/loan/index",
+    "pages/day/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "内部收益计算器",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#403c57"
+  },
+  "usingComponents": {
+    "van-button": "/wxcomponents/vant/button/index",
+    "van-cell-group": "/wxcomponents/vant/cell-group/index",
+    "van-field": "/wxcomponents/vant/field/index",
+    "van-icon": "/wxcomponents/vant/field/index",
+    "van-dialog": "/wxcomponents/vant/dialog/index",
+    "van-tab": "/wxcomponents/vant/tab/index",
+    "van-tabs": "/wxcomponents/vant/tabs/index",
+    "van-notify": "/wxcomponents/vant/notify/index"
+  }
+}
