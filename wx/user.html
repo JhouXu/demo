@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>信息页</title>
+  </head>
+  <body>
+    <div class="container"></div>
+  </body>
+  <script>
+    const getQuery = (url) => {
+      // str为？之后的参数部分字符串
+      const str = url.substr(url.indexOf("?") + 1);
+      // arr每个元素都是完整的参数键值
+      const arr = str.split("&");
+      // result为存储参数键值的集合
+      const result = {};
+      for (let i = 0; i < arr.length; i++) {
+        // item的两个元素分别为参数名和参数值
+        const item = arr[i].split("=");
+        result[item[0]] = item[1];
+      }
+      return result;
+    };
+
+    const { href } = window.location;
+    const param = getQuery(href);
+
+    const appid = "wx05f6522d1205b5f9";
+    const secret = "ede2a554c625b641160301f39fa5f49e";
+    const getAccessToken = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${appid}&secret=${secret}&code=${param.code}&grant_type=authorization_code`;
+    fetch(getAccessToken, {
+      methods: "get",
+      mode: "no-cors",
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        const getUserInfo = `https://api.weixin.qq.com/sns/userinfo?access_token=${res.access_token}&openid=${res.openid}&lang=zh_CN`;
+        return fetch(getUserInfo, { methods: "get", mode: "no-cors" });
+      })
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+
+        render(document.querySelector(".container"), res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    function render(dom, data) {
+      let str = "";
+      str += `<div><img style="width: 100px; height: 100px" src="${data.headimgurl}" /></div>`;
+      str += `<div>id： ${data.openid}</div>`;
+      str += `<div>昵称： ${data.nickname}</div>`;
+      dom.innerHTML = str;
+    }
+  </script>
+</html>
