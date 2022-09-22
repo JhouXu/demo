@@ -32,6 +32,16 @@
         <a-box position="0 0.5 0" color="yellow"></a-box>
       </a-marker>
 
+      <!-- 载入第三方模型  -->
+      <a-assets>
+        <a-assets-item id="robot" src="./glb/BrainStem.glb"></a-assets-item>
+      </a-assets>
+
+      <!-- 图案识别，显示第三方模型 -->
+      <a-marker preset="custom" type="pattern" url="./pattern/pattern-glb.patt">
+        <a-entity gltf-model="#robot" animation-mixer></a-entity>
+      </a-marker>
+
       <a-entity camera></a-entity>
     </a-scene>
   </body>
