@@ -80,7 +80,6 @@ function renderHandle(param) {
       };
 
       const { down, up } = pointer;
-      console.log(down, up);
       pointer.diff = {
         x: up.x - down.x,
         y: up.y - down.y,
@@ -90,7 +89,11 @@ function renderHandle(param) {
 
       // 手势方向判断 向下滑动
       if (pointer.diff.dist > 0) {
-        gsap.to(BgContainer, { delay: 0, duration: 1000, y: -100 });
+        console.log(1);
+        gsap.to(BgTilingSprite, {
+          y: -100,
+          duration: 1000,
+        });
       }
     });
     // 获取点坐标 end
