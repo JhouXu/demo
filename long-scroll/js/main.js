@@ -90,7 +90,7 @@ function renderHandle(param) {
 
       // 手势方向判断 向下滑动
       if (pointer.diff.dist > 0) {
-        gsap.to(BgContainer, { delay: 0, duration: 1000 });
+        gsap.to(BgContainer, { delay: 0, duration: 1000, y: -100 });
       }
     });
     // 获取点坐标 end
