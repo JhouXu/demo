@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container .scene {
+  /* width: 750px;
+  height: 1438px; */
+  background-color: skyblue;
+}
+
+/* .container .scene canvas.render-canvas {
+  width: 750px;
+  height: 1438px;
+} */
