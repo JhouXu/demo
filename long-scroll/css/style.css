@@ -13,9 +13,8 @@
 }
 
 .container .scene {
-  /* width: 750px;
-  height: 1438px; */
   background-color: skyblue;
+  font-size: 0;
 }
 
 /* .container .scene canvas.render-canvas {

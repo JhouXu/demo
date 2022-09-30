@@ -24,7 +24,7 @@ function renderHandle(param) {
     imageUrls: [
       {
         name: "bg",
-        url: "../images/bg.jpg",
+        url: "https://jhouxu.github.io/demo/long-scroll/images/bg.jpg",
       },
     ],
   };
@@ -47,13 +47,59 @@ function renderHandle(param) {
   app.loader.add(imageUrls).load(onAssetsLoaded);
 
   function onAssetsLoaded(loader, resource) {
+    // 创建背景容器
     let BgContainer = new PIXI.Container();
+    // 创建背景纹理
     let BgTexture = resource["bg"].texture;
-    console.log(BgTexture);
-    let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, designH);
-    BgTilingSprite.tileScale.set(0.5, 0.5);
-
+    // 创建平铺精灵
+    let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, designH * 10);
     BgContainer.addChild(BgTilingSprite);
     app.stage.addChild(BgContainer);
+
+    // 获取点坐标 start
+    const pointer = {
+      down: {},
+      up: {},
+      diff: {},
+    };
+    BgContainer.interactive = true;
+    BgContainer.on("pointerdown", (e) => {
+      const { x, y } = e.data.global;
+      pointer.down = {
+        x: parseInt(x),
+        y: parseInt(y),
+        timestamp: getTimestamp(),
+      };
+    });
+    BgContainer.on("pointerup", (e) => {
+      const { x, y } = e.data.global;
+      pointer.up = {
+        x: parseInt(x),
+        y: parseInt(y),
+        timestamp: getTimestamp(),
+      };
+
+      const { down, up } = pointer;
+      console.log(down, up);
+      pointer.diff = {
+        x: up.x - down.x,
+        y: up.y - down.y,
+        timestamp: up.timestamp - down.timestamp,
+        dist: y - x,
+      };
+
+      // 手势方向判断 向下滑动
+      if (pointer.diff.dist > 0) {
+        gsap.to(BgContainer, { delay: 0, duration: 1000 });
+      }
+    });
+    // 获取点坐标 end
+
+    // 执行动画 start
+    // 执行动画 end
+  }
+
+  function getTimestamp() {
+    return new Date().getTime();
   }
 }
