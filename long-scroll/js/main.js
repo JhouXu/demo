@@ -13,7 +13,6 @@ renderHandle({
   renderDOM: document.querySelector(".container .scene"),
   designW,
   designH,
-  resolution: 3,
 });
 
 // 初始化容器自适应
@@ -49,7 +48,7 @@ function renderHandle(param) {
     roundPixels: true,
     backgroundColor: "#ffffff",
     preserveDrawingBuffer: true,
-    resolution: 1,
+    resolution: obj.resolution,
   });
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
