@@ -134,12 +134,19 @@ function renderHandle(param) {
           obj._state = false;
         },
       });
-
-      console.log(obj._tween);
     } else {
       const { _direction } = obj;
       const multiple = getMultipleDirection(_direction);
       obj._tween.timeScale(whetherDirection(_direction) ? 1 + multiple : 1 - multiple / 10);
+
+      // console.group("分组");
+      // console.log(obj._tween);
+      // console.log(obj._tween.vars.y);
+      // dist = dist + pointer.diff.y * obj.distRatio;
+      // obj._tween.vars.y = dist;
+      // console.log(obj._tween.vars.y);
+      // console.log(obj._tween);
+      // console.groupEnd();
     }
   }
 
