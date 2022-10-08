@@ -107,12 +107,13 @@ function renderHandle(param) {
       timestamp: up.timestamp - down.timestamp,
     };
 
-    // 根据 distRatio 和 timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
-    dist = dist + pointer.diff.y * obj.distRatio;
-    duration = pointer.diff.timestamp * obj.timeRatio;
-
     // 手势方向判断 向下滑动
     if (pointer.diff.y > 0) {
+      // 当手势属于向下滑动时，才会去计算位移距离
+      // 根据 distRatio 和 timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
+      dist = dist + pointer.diff.y * obj.distRatio;
+      duration = pointer.diff.timestamp * obj.timeRatio;
+
       gsap.to(BgTilingSprite, { duration: duration, y: dist, ease: "expo.out" }); // 动画执行
     }
   }
