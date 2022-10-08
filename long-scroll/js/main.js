@@ -87,8 +87,8 @@ function renderHandle(param) {
         dist: y - x,
       };
 
-      // 手势方向判断 向下滑动
-      if (pointer.diff.dist > 0) {
+      // 手势方向判断 向上滑动
+      if (pointer.diff.dist < 0) {
         console.log(1);
         gsap.to(BgTilingSprite, {
           y: -100,
