@@ -132,6 +132,7 @@ function renderHandle(param) {
         onComplete: () => {
           // 动画执行完成，修改状态
           obj._state = false;
+          obj._direction.length = 0;
         },
       });
     } else {
