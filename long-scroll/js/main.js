@@ -13,6 +13,7 @@ renderHandle({
   renderDOM: document.querySelector(".container .scene"),
   designW,
   designH,
+  resolution: 3,
 });
 
 // 初始化容器自适应
@@ -30,8 +31,9 @@ function renderHandle(param) {
       },
     ],
     multiple: 1000,
-    distRatio: 1.5,
+    distRatio: 5,
     timeRatio: 0.08,
+    resolution: 1,
   };
 
   // 残数初始化处理
@@ -47,11 +49,12 @@ function renderHandle(param) {
     roundPixels: true,
     backgroundColor: "#ffffff",
     preserveDrawingBuffer: true,
+    resolution: 1,
   });
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
 
-  let dist = -(obj.designH * obj.multiple) + obj.designH;
+  let dist = -((obj.designH * obj.multiple) / 2);
   let duration = 0;
 
   // 获取点坐标 start
@@ -68,7 +71,7 @@ function renderHandle(param) {
     let BgTexture = resource["bg"].texture;
     // 创建平铺精灵
     let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, obj.designH * obj.multiple);
-    BgTilingSprite.position.y = -(obj.designH * obj.multiple) + obj.designH;
+    BgTilingSprite.position.y = -((obj.designH * obj.multiple) / 2);
     BgContainer.addChild(BgTilingSprite);
     app.stage.addChild(BgContainer);
 
@@ -108,14 +111,16 @@ function renderHandle(param) {
     };
 
     // 手势方向判断 向下滑动
-    if (pointer.diff.y > 0) {
-      // 当手势属于向下滑动时，才会去计算位移距离
-      // 根据 distRatio 和 timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
-      dist = dist + pointer.diff.y * obj.distRatio;
-      duration = pointer.diff.timestamp * obj.timeRatio;
+    // if (pointer.diff.y > 0) {
+    // 当手势属于向下滑动时，才会去计算位移距离
+    // 根据 distRatio 和 timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
+    dist = dist + pointer.diff.y * obj.distRatio;
+    duration = pointer.diff.timestamp * obj.timeRatio;
 
-      gsap.to(BgTilingSprite, { duration: duration, y: dist, ease: "expo.out" }); // 动画执行
-    }
+    console.log(dist);
+
+    gsap.to(BgTilingSprite, { duration: duration, y: dist, ease: "power3.out" }); // 动画执行
+    // }
   }
 
   function getTimestamp() {
