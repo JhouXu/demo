@@ -1,5 +1,3 @@
-console.log(window.devicePixelRatio);
-
 import { PixiPlugin } from "../utils/pixi-plugin.js";
 import gsapCore, { gsap, TweenMax, TimelineMax, _colorStringFilter } from "../utils/gsap-core.js";
 import { AutoScale } from "../js/auto-scale.js";
