@@ -26,7 +26,7 @@ function renderHandle(param) {
     imageUrls: [
       {
         name: "bg",
-        url: "https://jhouxu.github.io/demo/long-scroll/images/bg.jpg",
+        url: "https://jhouxu.github.io/demo/long-scroll/images/bg.png",
       },
     ],
     multiple: 1000,
