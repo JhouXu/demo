@@ -1,5 +1,7 @@
+console.log(window.devicePixelRatio);
+
 import { PixiPlugin } from "../utils/pixi-plugin.js";
-import gsapCore, { gsap, TweenMax, TimelineMax, _colorStringFilter } from "../utils/gsap-core.js";
+import gsapCore, { gsap, timeline, TweenMax, TimelineMax, _colorStringFilter } from "../utils/gsap-core.js";
 import { AutoScale } from "../js/auto-scale.js";
 
 gsap.registerPlugin(PixiPlugin);
@@ -29,7 +31,7 @@ function renderHandle(param) {
         url: "https://jhouxu.github.io/demo/long-scroll/images/bg.png",
       },
     ],
-    multiple: 1000,
+    multiple: 100,
     distRatio: 5,
     timeRatio: 0.08,
     resolution: 1,
@@ -113,7 +115,14 @@ function renderHandle(param) {
       // 根据 distRatio 和 timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
       dist = dist + pointer.diff.y * obj.distRatio;
       duration = pointer.diff.timestamp * obj.timeRatio;
-      gsap.to(BgTilingSprite, { duration: duration, y: dist, ease: "power3.out" }); // 动画执行
+      gsap.to(BgTilingSprite, {
+        duration: duration,
+        y: dist,
+        ease: "power3.out",
+        onComplete: (e) => {
+          console.log(BgTilingSprite.position.y);
+        },
+      });
     }
   }
 
