@@ -89,10 +89,8 @@ function renderHandle(param) {
 
       // 手势方向判断 向上滑动
       if (pointer.diff.dist < 0) {
-        console.log(1);
-        console.log(gsap);
-        // gsap.to(BgTilingSprite, { duration: 100, y: 100 });
-        BgTilingSprite.position.y = 100;
+        gsap.to(BgTilingSprite, { duration: 20, y: -100 });
+        gsap.to(BgTilingSprite, { duration: 10, y: -200 });
       }
     });
     // 获取点坐标 end
