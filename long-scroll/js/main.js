@@ -30,10 +30,11 @@ function renderHandle(param) {
       },
     ],
     multiple: 100,
-
-    distRatio: 4,
-    timeRatio: 0.05,
     resolution: 1,
+
+    // 函数内部变量
+    _distRatio: 4,
+    _timeRatio: 0.05,
     _tween: null, // 动画对象
     _state: false, // 动画执行状态
     _direction: [], // top / bottom
@@ -117,12 +118,12 @@ function renderHandle(param) {
     obj._direction.push(pointer.diff.y > 0 ? "bottom" : "top");
 
     if (!obj._state) {
-      // console.log(dist, dist + pointer.diff.y * obj.distRatio, pointer.diff.timestamp * obj.timeRatio);
+      // console.log(dist, dist + pointer.diff.y * obj._distRatio, pointer.diff.timestamp * obj._timeRatio);
       obj._state = true;
 
-      // 根据 distRatio 和 timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
-      dist = dist + pointer.diff.y * obj.distRatio;
-      duration = pointer.diff.timestamp * obj.timeRatio;
+      // 根据 _distRatio 和 _timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
+      dist = dist + pointer.diff.y * obj._distRatio;
+      duration = pointer.diff.timestamp * obj._timeRatio;
       obj._tween = gsap.to(BgTilingSprite, {
         duration: duration,
         y: dist,
@@ -141,7 +142,7 @@ function renderHandle(param) {
       // console.group("分组");
       // console.log(obj._tween);
       // console.log(obj._tween.vars.y);
-      // dist = dist + pointer.diff.y * obj.distRatio;
+      // dist = dist + pointer.diff.y * obj._distRatio;
       // obj._tween.vars.y = dist;
       // console.log(obj._tween.vars.y);
       // console.log(obj._tween);
