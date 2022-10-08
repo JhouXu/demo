@@ -17,7 +17,7 @@ renderHandle({
 
 // 初始化容器自适应
 const dom = document.querySelector(".container .scene");
-new AutoScale(dom, designW, designH);
+new AutoScale(dom, designW * window.devicePixelRatio, designH * window.devicePixelRatio);
 
 function renderHandle(param) {
   let obj = {
@@ -48,7 +48,7 @@ function renderHandle(param) {
     roundPixels: true,
     backgroundColor: "#ffffff",
     preserveDrawingBuffer: true,
-    resolution: obj.resolution,
+    resolution: window.devicePixelRatio,
   });
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
