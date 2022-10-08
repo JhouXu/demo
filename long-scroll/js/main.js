@@ -1,7 +1,7 @@
 console.log(window.devicePixelRatio);
 
 import { PixiPlugin } from "../utils/pixi-plugin.js";
-import gsapCore, { gsap, timeline, TweenMax, TimelineMax, _colorStringFilter } from "../utils/gsap-core.js";
+import gsapCore, { gsap, TweenMax, TimelineMax, _colorStringFilter } from "../utils/gsap-core.js";
 import { AutoScale } from "../js/auto-scale.js";
 
 gsap.registerPlugin(PixiPlugin);
@@ -32,9 +32,13 @@ function renderHandle(param) {
       },
     ],
     multiple: 100,
-    distRatio: 5,
-    timeRatio: 0.08,
+
+    distRatio: 4,
+    timeRatio: 0.05,
     resolution: 1,
+    _tween: null, // 动画对象
+    _state: false, // 动画执行状态
+    _direction: [], // top / bottom
   };
 
   // 残数初始化处理
@@ -111,19 +115,52 @@ function renderHandle(param) {
       timestamp: up.timestamp - down.timestamp,
     };
 
-    if (pointer.diff.y !== 0) {
+    // 滑动方向处理
+    obj._direction.push(pointer.diff.y > 0 ? "bottom" : "top");
+
+    if (!obj._state) {
+      // console.log(dist, dist + pointer.diff.y * obj.distRatio, pointer.diff.timestamp * obj.timeRatio);
+      obj._state = true;
+
       // 根据 distRatio 和 timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
       dist = dist + pointer.diff.y * obj.distRatio;
       duration = pointer.diff.timestamp * obj.timeRatio;
-      gsap.to(BgTilingSprite, {
+      obj._tween = gsap.to(BgTilingSprite, {
         duration: duration,
         y: dist,
-        ease: "power3.out",
-        onComplete: (e) => {
-          console.log(BgTilingSprite.position.y);
+        ease: "power1.out",
+        onComplete: () => {
+          // 动画执行完成，修改状态
+          obj._state = false;
         },
       });
+
+      console.log(obj._tween);
+    } else {
+      const { _direction } = obj;
+      const multiple = getMultipleDirection(_direction);
+      obj._tween.timeScale(whetherDirection(_direction) ? 1 + multiple : 1 - multiple / 10);
     }
+  }
+
+  // 判断运动方向是否相同
+  function whetherDirection(arr) {
+    return arr.slice(-2)[0] === arr.slice(-2)[1];
+  }
+
+  // 统计方向数组最后连续出现的次数，作为速度倍数
+  function getMultipleDirection(arr) {
+    const { length } = arr;
+    const key = arr[length - 1];
+    let total = 0;
+
+    for (let i = length; i--; i === 0) {
+      if (arr[i] === key) {
+        total++;
+      } else break;
+    }
+
+    return total;
   }
 
   function getTimestamp() {
