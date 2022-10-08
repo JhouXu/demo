@@ -102,16 +102,16 @@ function renderHandle(param) {
       x: up.x - down.x,
       y: up.y - down.y,
       timestamp: up.timestamp - down.timestamp,
-      dist: y - x,
     };
 
     // 根据 distRatio 和 timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
     dist = dist + pointer.diff.y * obj.distRatio;
     duration = pointer.diff.timestamp * obj.timeRatio;
-    console.log(dist, duration);
+
+    // gsap.to(BgTilingSprite, { duration: duration, y: dist, ease: "expo.out" }); // 动画执行
 
     // 手势方向判断 向上滑动
-    if (pointer.diff.dist < 0) {
+    if (pointer.diff.y < 0) {
       gsap.to(BgTilingSprite, { duration: duration, y: dist, ease: "expo.out" }); // 动画执行
     }
   }
