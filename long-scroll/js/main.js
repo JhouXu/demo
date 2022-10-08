@@ -11,6 +11,8 @@ const designH = 1438;
 renderHandle({
   PIXI: window.PIXI,
   renderDOM: document.querySelector(".container .scene"),
+  designW,
+  designH,
 });
 
 // 初始化容器自适应
@@ -49,7 +51,7 @@ function renderHandle(param) {
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
 
-  let dist = 0;
+  let dist = -(obj.designH * obj.multiple) + obj.designH;
   let duration = 0;
 
   // 获取点坐标 start
@@ -65,7 +67,8 @@ function renderHandle(param) {
     // 创建背景纹理
     let BgTexture = resource["bg"].texture;
     // 创建平铺精灵
-    let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, designH * obj.multiple);
+    let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, obj.designH * obj.multiple);
+    BgTilingSprite.position.y = -(obj.designH * obj.multiple) + obj.designH;
     BgContainer.addChild(BgTilingSprite);
     app.stage.addChild(BgContainer);
 
@@ -108,10 +111,8 @@ function renderHandle(param) {
     dist = dist + pointer.diff.y * obj.distRatio;
     duration = pointer.diff.timestamp * obj.timeRatio;
 
-    // gsap.to(BgTilingSprite, { duration: duration, y: dist, ease: "expo.out" }); // 动画执行
-
-    // 手势方向判断 向上滑动
-    if (pointer.diff.y < 0) {
+    // 手势方向判断 向下滑动
+    if (pointer.diff.y > 0) {
       gsap.to(BgTilingSprite, { duration: duration, y: dist, ease: "expo.out" }); // 动画执行
     }
   }
