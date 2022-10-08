@@ -30,7 +30,7 @@ function renderHandle(param) {
       },
     ],
     multiple: 1000,
-    distRatio: 1.25,
+    distRatio: 1.5,
     timeRatio: 0.08,
   };
 
