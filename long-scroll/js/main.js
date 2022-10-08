@@ -91,7 +91,8 @@ function renderHandle(param) {
       if (pointer.diff.dist < 0) {
         console.log(1);
         console.log(gsap);
-        gsap.to(BgTilingSprite, { duration: 100, y: 100 });
+        // gsap.to(BgTilingSprite, { duration: 100, y: 100 });
+        BgTilingSprite.position.y = 100;
       }
     });
     // 获取点坐标 end
