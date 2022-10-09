@@ -20,6 +20,7 @@ new AutoScale(dom, designW * window.devicePixelRatio, designH * window.devicePix
 
 function renderHandle(initParma) {
   let param = {
+    resolution: 1,
     designW: 750,
     designH: 1438,
     imageUrls: [
@@ -28,8 +29,7 @@ function renderHandle(initParma) {
         url: "https://jhouxu.github.io/demo/long-scroll/images/bg.png",
       },
     ],
-    multiple: 1000,
-    resolution: 1,
+    multiple: 1000, // 所需的平铺高度数量
 
     // 函数内部变量
     _dist: 0,
@@ -43,11 +43,15 @@ function renderHandle(initParma) {
       up: {},
       diff: {},
     },
+    _ease: "power1.out",
   };
 
   // 残数初始化处理
   param = Object.assign(param, initParma);
-  const { PIXI, renderDOM, designW, designH, imageUrls } = param;
+  param._dist = -((param.designH * param.multiple) / 2);
+  param._duration = 0;
+
+  const { PIXI, renderDOM, designW, designH, multiple, imageUrls } = param;
 
   // 初始化 pixi
   const app = new PIXI.Application({
@@ -63,20 +67,16 @@ function renderHandle(initParma) {
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
 
-  param._dist = -((param.designH * param.multiple) / 2);
-  param._duration = 0;
-
+  // 媒体素材加载完成时触发回调
   function onAssetsLoaded(loader, resource) {
-    // 创建背景容器
     let BgContainer = new PIXI.Container();
-    // 创建背景纹理
     let BgTexture = resource["bg"].texture;
-    // 创建平铺精灵
-    let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, param.designH * param.multiple);
-    BgTilingSprite.position.y = -((param.designH * param.multiple) / 2);
+    let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, designH * multiple);
+    BgTilingSprite.position.y = -((param.designH * param.multiple) / 2); // 初始化精灵处于垂直居中位置
     BgContainer.addChild(BgTilingSprite);
     app.stage.addChild(BgContainer);
 
+    // 开启背景容器互动事件监听
     BgContainer.interactive = true;
     BgContainer.on("pointerdown", (e) => pointerdownHandle(e));
     BgContainer.on("pointerup", (e) => pointerupHandle(e, BgTilingSprite));
@@ -109,28 +109,28 @@ function renderHandle(initParma) {
     };
 
     if (!param._state) {
-      animationHandle();
+      animationHandle(BgTilingSprite);
     } else {
       param._state = false; // 修改动画状态
       param._tween.kill(); // 销毁补间动画
-      animationHandle();
+      animationHandle(BgTilingSprite);
     }
+  }
 
-    function animationHandle() {
-      param._state = true;
-      param._dist = param._dist + param._pointer.diff.y * param._distRatio;
-      param._duration = param._pointer.diff.timestamp * param._timeRatio;
+  function animationHandle(sprite) {
+    param._state = true;
+    param._dist = param._dist + param._pointer.diff.y * param._distRatio;
+    param._duration = param._pointer.diff.timestamp * param._timeRatio;
 
-      param._tween = gsap.to(BgTilingSprite, {
-        duration: param._duration,
-        y: param._dist,
-        ease: "power1.out",
-        onComplete: () => {
-          // 动画执行完成，修改状态
-          param._state = false;
-        },
-      });
-    }
+    param._tween = gsap.to(sprite, {
+      duration: param._duration,
+      y: param._dist,
+      ease: param._ease,
+      onComplete: () => {
+        // 动画执行完成，修改状态
+        param._state = false;
+      },
+    });
   }
 
   function getTimestamp() {
