@@ -14,7 +14,6 @@ renderHandle({
   designW,
   designH,
 });
-
 // 初始化容器自适应
 const dom = document.querySelector(".container .scene");
 new AutoScale(dom, designW * window.devicePixelRatio, designH * window.devicePixelRatio);
@@ -35,9 +34,8 @@ function renderHandle(param) {
     // 函数内部变量
     _distRatio: 4,
     _timeRatio: 0.05,
-    _tween: null, // 动画对象
-    _state: false, // 动画执行状态
-    _direction: [], // top / bottom
+    _tween: null, // 动画对象，重复执行时，作为销毁存储处理
+    _state: false, // 动画执行状态 false or true
   };
 
   // 残数初始化处理
@@ -114,16 +112,19 @@ function renderHandle(param) {
       timestamp: up.timestamp - down.timestamp,
     };
 
-    // 滑动方向处理
-    obj._direction.push(pointer.diff.y > 0 ? "bottom" : "top");
-
     if (!obj._state) {
-      // console.log(dist, dist + pointer.diff.y * obj._distRatio, pointer.diff.timestamp * obj._timeRatio);
-      obj._state = true;
+      animationHandle();
+    } else {
+      obj._state = false; // 修改动画状态
+      obj._tween.kill(); // 销毁补间动画
+      animationHandle();
+    }
 
-      // 根据 _distRatio 和 _timeRatio 系数比例，动态计算当前背景平铺精灵需要位移距离和位移所需时间
+    function animationHandle() {
+      obj._state = true;
       dist = dist + pointer.diff.y * obj._distRatio;
       duration = pointer.diff.timestamp * obj._timeRatio;
+
       obj._tween = gsap.to(BgTilingSprite, {
         duration: duration,
         y: dist,
@@ -134,40 +135,7 @@ function renderHandle(param) {
           obj._direction.length = 0;
         },
       });
-    } else {
-      const { _direction } = obj;
-      const multiple = getMultipleDirection(_direction);
-      obj._tween.timeScale(whetherDirection(_direction) ? 1 + multiple : 1 - multiple / 10);
-
-      // console.group("分组");
-      // console.log(obj._tween);
-      // console.log(obj._tween.vars.y);
-      // dist = dist + pointer.diff.y * obj._distRatio;
-      // obj._tween.vars.y = dist;
-      // console.log(obj._tween.vars.y);
-      // console.log(obj._tween);
-      // console.groupEnd();
     }
-  }
-
-  // 判断运动方向是否相同
-  function whetherDirection(arr) {
-    return arr.slice(-2)[0] === arr.slice(-2)[1];
-  }
-
-  // 统计方向数组最后连续出现的次数，作为速度倍数
-  function getMultipleDirection(arr) {
-    const { length } = arr;
-    const key = arr[length - 1];
-    let total = 0;
-
-    for (let i = length; i--; i === 0) {
-      if (arr[i] === key) {
-        total++;
-      } else break;
-    }
-
-    return total;
   }
 
   function getTimestamp() {
