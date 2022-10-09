@@ -1,5 +1,24 @@
 "use strict";
 
+// if (navigator.mediaDevices || navigator.mediaDevices.enumerateDevices) {
+//   navigator.mediaDevices
+//     .getUserMedia({
+//       audio: false,
+//       video: true,
+//     })
+//     .then((stream) => {
+//       console.log(stream);
+//       var video = document.querySelector("video");
+//       video.src = window.URL.createObjectURL(stream);
+//       video.play();
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// } else {
+//   throw new Error("enumerateDevices is not supported");
+// }
+
 // 浏览器兼容判断
 if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
   throw new Error("enumerateDevices is not supported");
@@ -40,7 +59,8 @@ let openCamera = (videoId) => {
   };
 
   let constraints = {
-    video: true,
+    audio: false,
+    video: true, // 后置
   };
 
   navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
