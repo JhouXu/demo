@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zn-CH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script>
+      window.onload = function () {
+        setTimeout(function () {
+          var resizeEvent = window.document.createEvent("UIEvents");
+          resizeEvent.initUIEvent("resize", true, false, window, 0);
+          window.dispatchEvent(resizeEvent);
+        }, 3000);
+      };
+    </script>
+  </head>
+  <body>
+    <a-scene
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+    >
+      <a-marker preset="custom" type="pattern" url="./item/1.patt">
+        <a-box position="0 0 0" color="red"></a-box>
+      </a-marker>
+
+      <a-marker preset="custom" type="pattern" url="./item/2.patt">
+        <a-box position="0 0 0" color="yellow"></a-box>
+      </a-marker>
+    </a-scene>
+  </body>
+</html>
