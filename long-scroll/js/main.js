@@ -28,7 +28,7 @@ function renderHandle(param) {
         url: "https://jhouxu.github.io/demo/long-scroll/images/bg.png",
       },
     ],
-    multiple: 10,
+    multiple: 1000,
     resolution: 1,
 
     // 函数内部变量
@@ -38,6 +38,11 @@ function renderHandle(param) {
     _timeRatio: 0.05,
     _tween: null, // 动画对象，重复执行时，作为销毁存储处理
     _state: false, // 动画执行状态 false or true
+    _pointer: {
+      down: {},
+      up: {},
+      diff: {},
+    },
   };
 
   // 残数初始化处理
@@ -61,13 +66,6 @@ function renderHandle(param) {
   obj._dist = -((obj.designH * obj.multiple) / 2);
   obj._duration = 0;
 
-  // 获取点坐标 start
-  const pointer = {
-    down: {},
-    up: {},
-    diff: {},
-  };
-
   function onAssetsLoaded(loader, resource) {
     // 创建背景容器
     let BgContainer = new PIXI.Container();
@@ -82,16 +80,12 @@ function renderHandle(param) {
     BgContainer.interactive = true;
     BgContainer.on("pointerdown", (e) => pointerdownHandle(e));
     BgContainer.on("pointerup", (e) => pointerupHandle(e, BgTilingSprite));
-    // 获取点坐标 end
-
-    // 执行动画 start
-    // 执行动画 end
   }
 
   // 手势按下 - 处理函数
   function pointerdownHandle(e) {
     const { x, y } = e.data.global;
-    pointer.down = {
+    obj._pointer.down = {
       x: parseInt(x),
       y: parseInt(y),
       timestamp: getTimestamp(),
@@ -101,14 +95,14 @@ function renderHandle(param) {
   // 手势松开 - 处理函数
   function pointerupHandle(e, BgTilingSprite) {
     const { x, y } = e.data.global;
-    pointer.up = {
+    obj._pointer.up = {
       x: parseInt(x),
       y: parseInt(y),
       timestamp: getTimestamp(),
     };
 
-    const { down, up } = pointer;
-    pointer.diff = {
+    const { down, up } = obj._pointer;
+    obj._pointer.diff = {
       x: up.x - down.x,
       y: up.y - down.y,
       timestamp: up.timestamp - down.timestamp,
@@ -124,8 +118,8 @@ function renderHandle(param) {
 
     function animationHandle() {
       obj._state = true;
-      obj._dist = obj._dist + pointer.diff.y * obj._distRatio;
-      obj._duration = pointer.diff.timestamp * obj._timeRatio;
+      obj._dist = obj._dist + obj._pointer.diff.y * obj._distRatio;
+      obj._duration = obj._pointer.diff.timestamp * obj._timeRatio;
 
       obj._tween = gsap.to(BgTilingSprite, {
         duration: obj._duration,
