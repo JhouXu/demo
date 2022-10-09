@@ -18,8 +18,8 @@ renderHandle({
 const dom = document.querySelector(".container .scene");
 new AutoScale(dom, designW * window.devicePixelRatio, designH * window.devicePixelRatio);
 
-function renderHandle(param) {
-  let obj = {
+function renderHandle(initParma) {
+  let param = {
     designW: 750,
     designH: 1438,
     imageUrls: [
@@ -46,8 +46,8 @@ function renderHandle(param) {
   };
 
   // 残数初始化处理
-  obj = Object.assign(obj, param);
-  const { PIXI, renderDOM, designW, designH, imageUrls } = obj;
+  param = Object.assign(param, initParma);
+  const { PIXI, renderDOM, designW, designH, imageUrls } = param;
 
   // 初始化 pixi
   const app = new PIXI.Application({
@@ -63,8 +63,8 @@ function renderHandle(param) {
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
 
-  obj._dist = -((obj.designH * obj.multiple) / 2);
-  obj._duration = 0;
+  param._dist = -((param.designH * param.multiple) / 2);
+  param._duration = 0;
 
   function onAssetsLoaded(loader, resource) {
     // 创建背景容器
@@ -72,8 +72,8 @@ function renderHandle(param) {
     // 创建背景纹理
     let BgTexture = resource["bg"].texture;
     // 创建平铺精灵
-    let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, obj.designH * obj.multiple);
-    BgTilingSprite.position.y = -((obj.designH * obj.multiple) / 2);
+    let BgTilingSprite = new PIXI.TilingSprite(BgTexture, designW, param.designH * param.multiple);
+    BgTilingSprite.position.y = -((param.designH * param.multiple) / 2);
     BgContainer.addChild(BgTilingSprite);
     app.stage.addChild(BgContainer);
 
@@ -85,7 +85,7 @@ function renderHandle(param) {
   // 手势按下 - 处理函数
   function pointerdownHandle(e) {
     const { x, y } = e.data.global;
-    obj._pointer.down = {
+    param._pointer.down = {
       x: parseInt(x),
       y: parseInt(y),
       timestamp: getTimestamp(),
@@ -95,39 +95,39 @@ function renderHandle(param) {
   // 手势松开 - 处理函数
   function pointerupHandle(e, BgTilingSprite) {
     const { x, y } = e.data.global;
-    obj._pointer.up = {
+    param._pointer.up = {
       x: parseInt(x),
       y: parseInt(y),
       timestamp: getTimestamp(),
     };
 
-    const { down, up } = obj._pointer;
-    obj._pointer.diff = {
+    const { down, up } = param._pointer;
+    param._pointer.diff = {
       x: up.x - down.x,
       y: up.y - down.y,
       timestamp: up.timestamp - down.timestamp,
     };
 
-    if (!obj._state) {
+    if (!param._state) {
       animationHandle();
     } else {
-      obj._state = false; // 修改动画状态
-      obj._tween.kill(); // 销毁补间动画
+      param._state = false; // 修改动画状态
+      param._tween.kill(); // 销毁补间动画
       animationHandle();
     }
 
     function animationHandle() {
-      obj._state = true;
-      obj._dist = obj._dist + obj._pointer.diff.y * obj._distRatio;
-      obj._duration = obj._pointer.diff.timestamp * obj._timeRatio;
+      param._state = true;
+      param._dist = param._dist + param._pointer.diff.y * param._distRatio;
+      param._duration = param._pointer.diff.timestamp * param._timeRatio;
 
-      obj._tween = gsap.to(BgTilingSprite, {
-        duration: obj._duration,
-        y: obj._dist,
+      param._tween = gsap.to(BgTilingSprite, {
+        duration: param._duration,
+        y: param._dist,
         ease: "power1.out",
         onComplete: () => {
           // 动画执行完成，修改状态
-          obj._state = false;
+          param._state = false;
         },
       });
     }
