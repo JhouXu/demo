@@ -28,10 +28,12 @@ function renderHandle(param) {
         url: "https://jhouxu.github.io/demo/long-scroll/images/bg.png",
       },
     ],
-    multiple: 100,
+    multiple: 10,
     resolution: 1,
 
     // 函数内部变量
+    _dist: 0,
+    _duration: 0,
     _distRatio: 4,
     _timeRatio: 0.05,
     _tween: null, // 动画对象，重复执行时，作为销毁存储处理
@@ -56,8 +58,8 @@ function renderHandle(param) {
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
 
-  let dist = -((obj.designH * obj.multiple) / 2);
-  let duration = 0;
+  obj._dist = -((obj.designH * obj.multiple) / 2);
+  obj._duration = 0;
 
   // 获取点坐标 start
   const pointer = {
@@ -122,12 +124,12 @@ function renderHandle(param) {
 
     function animationHandle() {
       obj._state = true;
-      dist = dist + pointer.diff.y * obj._distRatio;
-      duration = pointer.diff.timestamp * obj._timeRatio;
+      obj._dist = obj._dist + pointer.diff.y * obj._distRatio;
+      obj._duration = pointer.diff.timestamp * obj._timeRatio;
 
       obj._tween = gsap.to(BgTilingSprite, {
-        duration: duration,
-        y: dist,
+        duration: obj._duration,
+        y: obj._dist,
         ease: "power1.out",
         onComplete: () => {
           // 动画执行完成，修改状态
