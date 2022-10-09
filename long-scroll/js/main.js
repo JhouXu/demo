@@ -43,6 +43,7 @@ function renderHandle(initParma) {
       up: {},
       diff: {},
     },
+    _lastDirection: "", // 记录上一次 top or bottom
     _ease: "power1.out",
   };
 
@@ -78,8 +79,12 @@ function renderHandle(initParma) {
 
     // 开启背景容器互动事件监听
     BgContainer.interactive = true;
-    BgContainer.on("pointerdown", (e) => pointerdownHandle(e));
-    BgContainer.on("pointerup", (e) => pointerupHandle(e, BgTilingSprite));
+    BgContainer.on("pointerdown", (e) => {
+      pointerdownHandle(e);
+    });
+    BgContainer.on("pointerup", (e) => {
+      pointerupHandle(e, BgTilingSprite);
+    });
   }
 
   // 手势按下 - 处理函数
@@ -109,11 +114,20 @@ function renderHandle(initParma) {
     };
 
     if (!param._state) {
+      param._lastDirection = param._pointer.diff.y < 0 ? "top" : "bottom";
       animationHandle(BgTilingSprite);
     } else {
-      param._state = false; // 修改动画状态
-      param._tween.kill(); // 销毁补间动画
-      animationHandle(BgTilingSprite);
+      const { y } = param._pointer.diff;
+      const lastDirection = param._lastDirection;
+      const nowDirection = y < 0 ? "top" : "bottom";
+
+      if (lastDirection !== nowDirection || y === 0) {
+        // param._tween.timeScale(0.5);
+      } else {
+        param._state = false; // 修改动画状态
+        param._tween.kill(); // 销毁补间动画
+        animationHandle(BgTilingSprite);
+      }
     }
   }
 
@@ -129,8 +143,26 @@ function renderHandle(initParma) {
       onComplete: () => {
         // 动画执行完成，修改状态
         param._state = false;
+        param._lastDirection = "";
       },
     });
+  }
+
+  // 长按操作
+  function longPointerHandle(type) {
+    let timeoutKey = 0;
+    let time = 500;
+
+    switch (type) {
+      case "down":
+        break;
+      case "move":
+        break;
+      case "up":
+        break;
+      default:
+        throw new Error("错误 type");
+    }
   }
 
   function getTimestamp() {
