@@ -81,9 +81,12 @@ function renderHandle(initParma) {
     BgContainer.interactive = true;
     BgContainer.on("pointerdown", (e) => {
       pointerdownHandle(e);
+      longPointerHandle("down", param._tween);
     });
+    BgContainer.on("pointermove", (e) => longPointerHandle("move", param._tween));
     BgContainer.on("pointerup", (e) => {
       pointerupHandle(e, BgTilingSprite);
+      longPointerHandle("up", param._tween);
     });
   }
 
@@ -121,8 +124,9 @@ function renderHandle(initParma) {
       const lastDirection = param._lastDirection;
       const nowDirection = y < 0 ? "top" : "bottom";
 
-      if (lastDirection !== nowDirection || y === 0) {
-        // param._tween.timeScale(0.5);
+      if (y === 0) {
+        param._state = false;
+        param._tween.kill();
       } else {
         param._state = false; // 修改动画状态
         param._tween.kill(); // 销毁补间动画
@@ -148,17 +152,22 @@ function renderHandle(initParma) {
     });
   }
 
-  // 长按操作
-  function longPointerHandle(type) {
+  // 长按操作,
+  function longPointerHandle(type, tween, time = 200) {
     let timeoutKey = 0;
-    let time = 500;
 
     switch (type) {
       case "down":
+        timeoutKey = setTimeout(() => {
+          console.log("动画停止");
+          tween?.kill();
+        }, time);
         break;
       case "move":
+        clearTimeout(timeoutKey);
         break;
       case "up":
+        clearTimeout(timeoutKey);
         break;
       default:
         throw new Error("错误 type");
