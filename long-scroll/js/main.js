@@ -25,7 +25,7 @@ function renderHandle(initParma) {
     imageUrls: [
       {
         name: "bg",
-        url: "https://jhouxu.github.io/demo/long-scroll/images/bg2.png",
+        url: "https://jhouxu.github.io/demo/long-scroll/images/bg-font.png",
       },
     ],
     multiple: 1000, // 所需的平铺高度数量
