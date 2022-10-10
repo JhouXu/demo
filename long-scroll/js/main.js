@@ -16,7 +16,7 @@ renderHandle({
 });
 // 初始化容器自适应
 const dom = document.querySelector(".container .scene");
-new AutoScale(dom, designW * window.devicePixelRatio, designH * window.devicePixelRatio);
+new AutoScale(dom, designW, designH);
 
 function renderHandle(initParma) {
   let param = {
@@ -62,11 +62,10 @@ function renderHandle(initParma) {
     roundPixels: true,
     backgroundColor: "#ffffff",
     preserveDrawingBuffer: true,
-    resolution: window.devicePixelRatio,
+    resolution: 1,
   });
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
-  app.renderer.autoDensity = true;
 
   // 媒体素材加载完成时触发回调
   function onAssetsLoaded(loader, resource) {
