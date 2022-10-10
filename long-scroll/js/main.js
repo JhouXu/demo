@@ -44,7 +44,7 @@ function renderHandle(initParma) {
       up: {},
       diff: {},
     },
-    _ease: "power1.out",
+    _ease: "power4.out",
   };
 
   // 残数初始化处理
