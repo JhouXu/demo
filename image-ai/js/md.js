@@ -1,7 +1,7 @@
 "use strict";
 
-document.querySelector("#btn").addEventListener("click", () => captureHandle("#rtc"));
-function captureHandle(captureId) {
+document.querySelector("#btn").addEventListener("click", () => captureHandle("#rtc", "#img"));
+function captureHandle(captureId, renderId) {
   const dom = document.querySelector(captureId);
   const { devicePixelRatio } = window;
   const { offsetWidth, offsetHeight } = dom;
@@ -13,7 +13,8 @@ function captureHandle(captureId) {
     height: offsetHeight,
   })
     .then((canvas) => {
-      console.log(canvas.toDataURL("image/png"));
+      const base64Data = canvas.toDataURL("image/png");
+      document.querySelector(renderId).setAttribute("src", base64Data);
     })
     .catch((err) => {
       console.log(`html2canvas 内部执行发生错误： ${err}`);

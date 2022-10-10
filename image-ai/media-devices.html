@@ -22,8 +22,8 @@
       }
 
       video {
-        width: 100vw;
-        height: 100vh;
+        /* width: 100vw;
+        height: 100vh; */
         background-color: #333;
       }
 
@@ -37,12 +37,21 @@
         border-radius: 0.8vw;
         cursor: pointer;
       }
+
+      img {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 100px;
+        background-color: #ffffff;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <video id="rtc" autoplay playsinline muted></video>
       <button id="btn">点击截图</button>
+      <img id="img" />
     </div>
   </body>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
