@@ -123,6 +123,7 @@ function renderHandle(initParma) {
       if (y === 0) {
         param._state = false;
         param._tween.kill();
+        param._dist = BgTilingSprite.position.y;
       } else {
         param._state = false; // 修改动画状态
         param._tween.kill(); // 销毁补间动画
