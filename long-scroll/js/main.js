@@ -34,7 +34,7 @@ function renderHandle(initParma) {
     // 函数内部变量
     _dist: 0,
     _duration: 0,
-    _distRatio: 15,
+    _distRatio: 10,
     _timeRatio: 0.05,
     _tween: null, // 动画对象，重复执行时，作为销毁存储处理
     _state: false, // 动画执行状态 false or true
