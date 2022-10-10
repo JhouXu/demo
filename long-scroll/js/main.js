@@ -20,13 +20,12 @@ new AutoScale(dom, designW * window.devicePixelRatio, designH * window.devicePix
 
 function renderHandle(initParma) {
   let param = {
-    resolution: 1,
     designW: 750,
     designH: 1438,
     imageUrls: [
       {
         name: "bg",
-        url: "https://jhouxu.github.io/demo/long-scroll/images/bg.png",
+        url: "https://jhouxu.github.io/demo/long-scroll/images/bg2.png",
       },
     ],
     multiple: 1000, // 所需的平铺高度数量
@@ -67,6 +66,7 @@ function renderHandle(initParma) {
   });
   renderDOM.appendChild(app.view);
   app.loader.add(imageUrls).load(onAssetsLoaded);
+  app.renderer.autoDensity = true;
 
   // 媒体素材加载完成时触发回调
   function onAssetsLoaded(loader, resource) {
