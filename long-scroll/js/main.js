@@ -34,10 +34,11 @@ function renderHandle(initParma) {
     // 函数内部变量
     _dist: 0,
     _duration: 0,
-    _distRatio: 4,
+    _distRatio: 15,
     _timeRatio: 0.05,
     _tween: null, // 动画对象，重复执行时，作为销毁存储处理
     _state: false, // 动画执行状态 false or true
+    _oldDirection: "", // 动画指向方向 top or bottom
     _pointer: {
       down: {},
       up: {},
@@ -117,25 +118,31 @@ function renderHandle(initParma) {
 
     if (!param._state) {
       animationHandle(BgTilingSprite);
+      param._oldDirection = param._pointer.diff.y > 0 ? "bottom" : "top";
     } else {
       const { y } = param._pointer.diff;
+      const { _oldDirection } = param;
+      const newDirection = y > 0 ? "bottom" : "top";
 
       if (y === 0) {
-        param._state = false;
-        param._tween.kill();
-        param._dist = BgTilingSprite.position.y;
+        stopAnimationHandle(BgTilingSprite);
+      } else if (_oldDirection !== newDirection) {
+        stopAnimationHandle(BgTilingSprite);
+        animationHandle(BgTilingSprite);
       } else {
-        param._state = false; // 修改动画状态
-        param._tween.kill(); // 销毁补间动画
+        stopAnimationHandle(BgTilingSprite);
         animationHandle(BgTilingSprite);
       }
     }
   }
 
+  // direction = forward or reverse
   function animationHandle(sprite) {
+    const { _distRatio, _timeRatio } = param;
+
     param._state = true;
-    param._dist = param._dist + param._pointer.diff.y * param._distRatio;
-    param._duration = param._pointer.diff.timestamp * param._timeRatio;
+    param._dist = param._dist + param._pointer.diff.y * _distRatio;
+    param._duration = param._pointer.diff.timestamp * _timeRatio;
 
     param._tween = gsap.to(sprite, {
       duration: param._duration,
@@ -148,8 +155,14 @@ function renderHandle(initParma) {
     });
   }
 
+  function stopAnimationHandle(sprite) {
+    param._state = false; // 修改动画状态
+    param._dist = sprite.position.y;
+    param._tween.kill(); // 销毁补间动画
+  }
+
   // 长按操作,
-  function longPointerHandle(type, tween, time = 200) {
+  function longPointerHandle(type, tween, time = 500) {
     let timeoutKey = 0;
 
     switch (type) {
