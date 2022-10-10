@@ -43,7 +43,6 @@ function renderHandle(initParma) {
       up: {},
       diff: {},
     },
-    _lastDirection: "", // 记录上一次 top or bottom
     _ease: "power1.out",
   };
 
@@ -117,12 +116,9 @@ function renderHandle(initParma) {
     };
 
     if (!param._state) {
-      param._lastDirection = param._pointer.diff.y < 0 ? "top" : "bottom";
       animationHandle(BgTilingSprite);
     } else {
       const { y } = param._pointer.diff;
-      const lastDirection = param._lastDirection;
-      const nowDirection = y < 0 ? "top" : "bottom";
 
       if (y === 0) {
         param._state = false;
@@ -147,7 +143,6 @@ function renderHandle(initParma) {
       onComplete: () => {
         // 动画执行完成，修改状态
         param._state = false;
-        param._lastDirection = "";
       },
     });
   }
@@ -159,7 +154,6 @@ function renderHandle(initParma) {
     switch (type) {
       case "down":
         timeoutKey = setTimeout(() => {
-          console.log("动画停止");
           tween?.kill();
         }, time);
         break;
