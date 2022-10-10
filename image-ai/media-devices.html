@@ -12,7 +12,7 @@
       }
 
       body {
-        overflow: hidden;
+        /* overflow: hidden; */
       }
 
       .container {
@@ -22,21 +22,33 @@
       }
 
       video {
-        /* width: 100%; */
-        /* height: 100%; */
+        width: 100vw;
+        height: 100vh;
         background-color: #333;
+      }
+
+      button {
+        padding: 10px 20px;
+        position: absolute;
+        bottom: 20px;
+        background-color: #07c160;
+        color: #ffffff;
+        border: none;
+        border-radius: 0.8vw;
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <video id="rtc" autoplay playsinline muted></video>
-      <!-- <button>点击截图</button> -->
+      <button id="btn">点击截图</button>
     </div>
   </body>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
   <script src="./js/md.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.js"></script>
   <script>
-    new VConsole();
+    // new VConsole();
   </script>
 </html>
