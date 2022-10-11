@@ -28,14 +28,29 @@ function initCamera(renderId) {
     throw new Error("enumerateDevices is not supported");
   }
 
-  const constraints = { audio: false, video: { facingMode: { exact: "environment" } } };
+  const video = document.querySelector(renderId);
+  const { innerWidth, innerHeight, devicePixelRatio } = window;
+  alert(innerWidth + "-" + innerHeight + "-" + devicePixelRatio);
+
+  const constraints = {
+    audio: false,
+    video: {
+      // width: innerWidth * devicePixelRatio,
+      // height: innerHeight * devicePixelRatio,
+      facingMode: { exact: "environment" },
+    },
+  };
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
-      let video = document.querySelector(renderId);
       video.srcObject = stream;
     })
     .catch((err) => {
       console.log(err);
     });
 }
+
+// (function () {
+//   const { innerWidth, innerHeight, devicePixelRatio } = window;
+//   AutoScale(document.querySelector("#rtc"), innerWidth * devicePixelRatio, innerHeight * devicePixelRatio);
+// })();
