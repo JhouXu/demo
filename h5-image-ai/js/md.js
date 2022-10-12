@@ -43,6 +43,7 @@ function initCamera(renderId) {
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
+      // srcObject 视频实时流
       video.srcObject = stream;
     })
     .catch((err) => {
