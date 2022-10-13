@@ -4,6 +4,7 @@
 
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
     <script>
       window.onload = function () {
         setTimeout(function () {
@@ -36,15 +37,17 @@
       <a-assets>
         <a-assets-item id="robot" src="./glb/BrainStem.glb"></a-assets-item>
         <a-assets-item id="dinosaur" src="./glb/dinosaur.glb"></a-assets-item>
+        <a-assets-item id="ship" src="./glb/ship.glb"></a-assets-item>
       </a-assets>
 
       <!-- 图案识别，渲染 -->
-      <!-- <a-marker preset="custom" type="pattern" url="./pattern/pattern-glb.patt">
-        <a-entity id="render-robot" scale="2 2 2" rotation="-90 0 0" gltf-model="#robot" animation-mixer></a-entity>
-      </a-marker> -->
+      <a-marker preset="custom" type="pattern" url="./pattern/pattern-glb.patt">
+        <!-- <a-entity id="render-robot" scale="2 2 2" rotation="-90 0 0" gltf-model="#robot" animation-mixer></a-entity> -->
+        <a-entity id="render-robot" scale="1 1 1" gltf-model="#robot" animation-mixer></a-entity>
+      </a-marker>
 
       <!-- 图案识别，渲染恐龙 -->
-      <a-marker preset="custom" type="pattern" url="./pattern/pattern-glb.patt">
+      <!-- <a-marker preset="custom" type="pattern" url="./pattern/pattern-glb.patt">
         <a-entity
           id="render-dinosaur"
           scale="1 1 1"
@@ -52,7 +55,18 @@
           gltf-model="#dinosaur"
           animation-mixer
         ></a-entity>
-      </a-marker>
+      </a-marker> -->
+
+      <!-- 渲染飞船 -->
+      <a-entity id="render-ship">
+        <a-entity
+          scale="0.2 0.2 0.2"
+          position="-8 5 -10"
+          rotation="0 90 20"
+          gltf-model="#ship"
+          animation-mixer
+        ></a-entity>
+      </a-entity>
 
       <a-nft
         type="nft"
