@@ -42,15 +42,15 @@
     >
       <a-nft
         type="nft"
-        url="../images/pattern-glb"
+        url="https://img.mp.itc.cn/upload/20170415/44ff7e0f29ab46878aa29bbb88a697b9_th"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5"
       >
-        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-        <a-entity gltf-model="../glb/ship.glb" scale="5 5 5" position="50 150 0"> </a-entity>
+        <a-entity id="render-dinosaur2" gltf-model="./glb/dinosaur.glb" scale="1 1 1" rotation="90 0 90"> </a-entity>
       </a-nft>
+
       <!-- static camera that moves according to the device movemenents -->
       <a-entity camera></a-entity>
     </a-scene>
