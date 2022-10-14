@@ -28,21 +28,37 @@
 
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://jhouxu.github.io/demo/ar-js/utils/gestures.js"></script>
   </head>
   <body style="margin: 0px; overflow: hidden">
     <div class="arjs-loader">
-      <div>Loading, please wait...</div>
+      <div>正在加载AR模型，请稍候…</div>
     </div>
 
     <a-scene
       vr-mode-ui="enabled: false;"
       renderer="logarithmicDepthBuffer: true;"
-      embedded
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+      embedded
+      gesture-detector
     >
       <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
-      <a-nft type="nft" url="../nft/image-nft" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
-        <a-entity id="render-dinosaur2" gltf-model="./glb/dinosaur.glb" scale="1 1 1" rotation="90 0 90"> </a-entity>
+      <a-nft
+        type="nft"
+        url="https://jhouxu.github.io/demo/ar-js/nft/image-nft"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
+      >
+        <a-entity
+          id="render-dinosaur"
+          gltf-model="https://jhouxu.github.io/demo/ar-js/glb/dinosaur.glb"
+          scale="1 1 1"
+          rotation="90 0 90"
+          gesture-handler="minScale: 0.25; maxScale: 10"
+        >
+        </a-entity>
       </a-nft>
 
       <!-- static camera that moves according to the device movemenents -->
