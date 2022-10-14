@@ -9,7 +9,7 @@
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
     <script src="https://jhouxu.github.io/demo/ar-js/utils/aframe-extras.js"></script>
-    <script src="https://jhouxu.github.io/demo/ar-js/utils/gestures.js"></script>
+    <!-- <script src="https://jhouxu.github.io/demo/ar-js/utils/gestures.js"></script> -->
     <script>
       window.onload = function () {
         setTimeout(function () {
@@ -24,10 +24,11 @@
     <!-- 1. 图案识别模式 -->
     <!-- 2. 使用 aframe-extras 扩展，模型文件自带骨骼动画可以正常播放 -->
     <!-- 3. 使用 gestures 扩展，模型文件可以跟随手势进行位置移动，角度旋转，以及放大缩小 -->
+
+    <!-- gesture-detector -->
     <a-scene
       id="scene"
       arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
-      gesture-detector
       embedded
     >
       <a-assets>
@@ -42,7 +43,8 @@
         url="../pattern/pattern-glb.patt"
         cursor="fuse: false; rayOrigin: mouse;"
       >
-        <a-entity id="render-robot" scale="1 1 1" gltf-model="#robot" animation-mixer gesture-handler></a-entity>
+        <!-- gesture-handler -->
+        <a-entity id="render-robot" scale="1 1 1" gltf-model="#robot" animation-mixer></a-entity>
       </a-marker>
     </a-scene>
   </body>
