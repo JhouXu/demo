@@ -25,11 +25,10 @@
     <!-- 2. 使用 aframe-extras 扩展，模型文件自带骨骼动画可以正常播放 -->
     <!-- 3. 使用 gestures 扩展，模型文件可以跟随手势进行位置移动，角度旋转，以及放大缩小 -->
     <a-scene
-      embedded
-      arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
-      vr-mode-ui="enabled: false"
-      gesture-detector
       id="scene"
+      arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+      gesture-detector
+      embedded
     >
       <a-assets>
         <a-assets-item id="robot" src="../glb/BrainStem.glb"></a-assets-item>
