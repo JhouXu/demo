@@ -9,7 +9,7 @@
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
     <script src="../utils/aframe-extras.js"></script>
-    <script src="../utils/gestures.js"></script>
+    <!-- <script src="../utils/gestures.js"></script> -->
     <script>
       window.onload = function () {
         setTimeout(function () {
@@ -32,7 +32,7 @@
       id="scene"
     >
       <a-assets>
-        <a-assets-item id="robot" src="https://jhouxu.github.io/demo/ar-js/glb/BrainStem.glb"></a-assets-item>
+        <a-assets-item id="robot" src="../glb/BrainStem.glb"></a-assets-item>
       </a-assets>
 
       <a-marker
@@ -40,7 +40,7 @@
         emitevents="true"
         preset="custom"
         type="pattern"
-        url="https://jhouxu.github.io/demo/ar-js/pattern/pattern-glb.patt"
+        url="../pattern/pattern-glb.patt"
         cursor="fuse: false; rayOrigin: mouse;"
       >
         <a-entity id="render-robot" scale="1 1 1" gltf-model="#robot" animation-mixer gesture-handler></a-entity>
