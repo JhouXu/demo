@@ -5,12 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>index</title>
-    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <!-- <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script> -->
     <!-- <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script> -->
     <!-- <script src="https://jhouxu.github.io/demo/ar-js/utils/aframe-extras.js"></script> -->
   </head>
   <body>
-    <a-scene
+    <a-scene>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+
+    <!-- <a-scene
       id="scene"
       arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
       embedded
@@ -30,6 +39,6 @@
       >
         <a-entity id="render-robot" scale="1 1 1" gltf-model="#robot" animation-mixer gesture-handler></a-entity>
       </a-marker>
-    </a-scene>
+    </a-scene> -->
   </body>
 </html>
