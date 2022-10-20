@@ -29,7 +29,9 @@
 
     <script src="./utils/aframe-master.min.js"></script>
     <script src="./utils/aframe-ar-nft.js"></script>
-    <script src="./utils/gestures.js"></script>
+    <!-- <script src="./utils/gestures.js"></script> -->
+    <!-- <script src="./utils/aframe-extras.js"></script> -->
+    <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
   </head>
   <body style="margin: 0px; overflow: hidden">
     <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
@@ -54,6 +56,7 @@
           gesture-handler="minScale: 0.25; maxScale: 10"
           position="100 0 -200"
           rotation="-90 0 0"
+          animation-mixer
         >
         </a-entity>
       </a-nft>
