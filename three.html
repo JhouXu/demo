@@ -15,7 +15,7 @@
 
     <script src="./utils/three.js"></script>
     <script src="./utils/three-ar.js"></script>
-    <script src="./utils/stats.js"></script>
+    <!-- <script src=""></script> -->
     <script>
       debugger;
       THREEx.ArToolkitContext.baseURL = "";
@@ -25,6 +25,8 @@
     <div style="position: absolute; top: 10px; width: 100%; text-align: center; z-index: 1"></div>
   </body>
   <script>
+    import { State } from "./utils/stats.js";
+
     var renderer = new THREE.WebGLRenderer({
       // antialias	: true,
       alpha: true,
