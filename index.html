@@ -20,6 +20,25 @@
         width: inherit;
         height: inherit;
       }
+
+      .arjs-loader {
+        width: 100%;
+        height: 15%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+      }
     </style>
     <!-- <script src="https://jhouxu.github.io/demo/utils/aframe-master.min.js"></script> -->
     <!-- <script src="https://jhouxu.github.io/demo/utils/aframe-ar.js"></script> -->
@@ -30,6 +49,10 @@
     <!-- <script src="https://jhouxu.github.io/demo/ar-js/utils/aframe-extras.js"></script> -->
   </head>
   <body style="margin: 0px; overflow: hidden">
+    <div class="arjs-loader">
+      <div>正在加载AR模型，请稍后</div>
+    </div>
+
     <a-scene
       id="scene"
       arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
