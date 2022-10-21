@@ -27,10 +27,10 @@
       }
     </style>
 
-    <script src="./utils/aframe-master.min.js"></script>
-    <script src="./utils/aframe-ar-nft.js"></script>
-    <!-- <script src="./utils/gestures.js"></script> -->
-    <!-- <script src="./utils/aframe-extras.js"></script> -->
+    <script src="https://jhouxu.github.io/demo/utils/aframe-master.min.js"></script>
+    <script src="https://jhouxu.github.io/demo/utils/aframe-ar-nft.js"></script>
+    <!-- <script src="https://jhouxu.github.io/demo/utils/gestures.js"></script> -->
+    <!-- <script src="https://jhouxu.github.io/demo/utils/aframe-extras.js"></script> -->
     <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
   </head>
   <body style="margin: 0px; overflow: hidden">
@@ -48,10 +48,17 @@
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
     >
       <!-- 图片训练后文件路径，不带文件拓展名！ -->
-      <a-nft type="nft" url="./nft/sculling" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+      <a-nft
+        type="nft"
+        url="https://jhouxu.github.io/demo/nft/sculling"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
+      >
         <!-- 展示模型的路径 -->
         <a-entity
-          gltf-model="./glb/BrainStem.glb"
+          gltf-model="https://jhouxu.github.io/demo/glb/BrainStem.glb"
           scale="50 50 50"
           gesture-handler="minScale: 0.25; maxScale: 10"
           position="100 0 -200"
