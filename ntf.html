@@ -7,10 +7,10 @@
     <title>nft</title>
 
     <style>
-      body {
+      /* body {
         width: 100vw !important;
         height: 100vh !important;
-      }
+      } */
 
       .arjs-loader {
         width: 100%;
@@ -90,12 +90,13 @@
       alert("open camera");
     });
 
-    // setTimeout(() => {
-    //   const rect = document.querySelector("body").getBoundingClientRect();
-    //   alert(
-    //     `rect width: ${rect.width}; height: ${rect.height}; window width: ${window.innerWidth}; height: ${window.innerHeight}`
-    //   );
-    // }, 1000);
+    (() => {
+      // callback function: init body<tag> width and height
+      const body = document.querySelector("body");
+      const { innerWidth, innerHeight } = window;
+      body.style.width = `${innerWidth}px`;
+      body.style.height = `${innerHeight}px`;
+    })();
   </script>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.js"></script>
   <script>
