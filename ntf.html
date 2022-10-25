@@ -7,6 +7,11 @@
     <title>nft</title>
 
     <style>
+      body {
+        width: 100vw !important;
+        height: 100vh !important;
+      }
+
       .arjs-loader {
         width: 100%;
         height: 15%;
@@ -28,8 +33,8 @@
 
       #btn {
         position: absolute;
-        top: 20vh;
         left: 50%;
+        bottom: 15vh;
         transform: translateX(-50%);
       }
     </style>
@@ -78,19 +83,19 @@
       <a-entity camera="fov: 190"></a-entity>
     </a-scene>
 
-    <button id="btn">开启 ios 端摄像头</button>
+    <button id="btn">开启 ios 微信端摄像</button>
   </body>
   <script>
     document.querySelector("#btn").addEventListener("click", (e) => {
       alert("open camera");
     });
 
-    const rect = document.querySelector("a-scene").getBoundingClientRect();
-    console.log(rect);
-    console.log({
-      innerW: window.innerWidth,
-      innerH: window.innerHeight,
-    });
+    // setTimeout(() => {
+    //   const rect = document.querySelector("body").getBoundingClientRect();
+    //   alert(
+    //     `rect width: ${rect.width}; height: ${rect.height}; window width: ${window.innerWidth}; height: ${window.innerHeight}`
+    //   );
+    // }, 1000);
   </script>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.js"></script>
   <script>
