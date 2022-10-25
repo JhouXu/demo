@@ -25,6 +25,13 @@
         font-size: 1.25em;
         color: white;
       }
+
+      #btn {
+        position: absolute;
+        top: 10vw;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     </style>
 
     <script src="https://jhouxu.github.io/demo/utils/aframe-master.min.js"></script>
@@ -70,7 +77,14 @@
       <!-- static camera that moves according to the device movemenents -->
       <a-entity camera="fov: 190"></a-entity>
     </a-scene>
+
+    <button id="btn">开启 ios 端摄像头</button>
   </body>
+  <script>
+    document.querySelector("#btn").addEventListener("click", (e) => {
+      alert("open camera");
+    });
+  </script>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.js"></script>
   <script>
     new VConsole();
