@@ -28,7 +28,7 @@
 
       #btn {
         position: absolute;
-        top: 10vw;
+        top: 20vh;
         left: 50%;
         transform: translateX(-50%);
       }
@@ -83,6 +83,13 @@
   <script>
     document.querySelector("#btn").addEventListener("click", (e) => {
       alert("open camera");
+    });
+
+    const rect = document.querySelector("a-scene").getBoundingClientRect();
+    console.log(rect);
+    console.log({
+      innerW: window.innerWidth,
+      innerH: window.innerHeight,
     });
   </script>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.js"></script>
