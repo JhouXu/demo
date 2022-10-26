@@ -68,7 +68,7 @@
           let dom = document.querySelector(".e-entity");
           // 图像出现在视野时，播放模型骨骼动画
           sceneEl.addEventListener("markerFound", () => {
-            setTimeout(() => dom.setAttribute("animation-mixer", { timeScale: 1, loop: 1 }), 500);
+            setTimeout(() => dom.setAttribute("animation-mixer", { timeScale: 1, loop: "once" }), 500);
           });
 
           // 图像消失在视野时，暂停模型骨骼动画
