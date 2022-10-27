@@ -56,9 +56,9 @@
 
     <script src="https://jhouxu.github.io/demo/utils/aframe-master.min.js"></script>
     <script src="https://jhouxu.github.io/demo/utils/aframe-ar-nft.js"></script>
-    <!-- <script src="https://jhouxu.github.io/demo/utils/gestures.js"></script> -->
     <script src="https://jhouxu.github.io/demo/utils/aframe-extras-v6.1.0.js"></script>
-
+    <script src="https://jhouxu.github.io/demo/utils/gestures.js"></script>
+    <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
     <script>
       let isPlay = false;
 
@@ -113,6 +113,7 @@
       renderer="logarithmicDepthBuffer: true;"
       embedded
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+      gesture-detector
     >
       <!-- 图片训练后文件路径，不带文件拓展名！ -->
       <!-- smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5" -->
@@ -130,9 +131,9 @@
           class="e-entity"
           gltf-model="https://jhouxu.github.io/demo/glb/BrainStem.glb"
           scale="100 100 100"
-          gesture-handler="minScale: 0.25; maxScale: 10"
           position="120 0 -210"
           rotation="-90 0 0"
+          gesture-handler="minScale: 0.25; maxScale: 2"
         >
           <!-- -->
         </a-entity>
