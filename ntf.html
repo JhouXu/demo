@@ -52,6 +52,13 @@
         bottom: 10vh;
         transform: translateX(-50%);
       }
+
+      #get-position {
+        position: absolute;
+        left: 50%;
+        bottom: 5vh;
+        transform: translateX(-50%);
+      }
     </style>
 
     <script src="https://jhouxu.github.io/demo/utils/aframe-master.min.js"></script>
@@ -99,6 +106,16 @@
             isPlay = true;
           }
         });
+
+        document.querySelector("#get-position").addEventListener("click", (e) => {
+          getPosition()
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
       };
     </script>
   </head>
@@ -145,19 +162,10 @@
 
     <button id="start-ios-wechat-camer">开启 ios 微信端摄像</button>
     <button id="play-pause-handler">播放暂停动画</button>
+    <button id="get-position">获取定位数据</button>
   </body>
   <script src="https://cdn.bootcdn.net/ajax/libs/eruda/1.6.0/eruda.js"></script>
   <script>
     eruda.init();
-  </script>
-
-  <script>
-    getPosition()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   </script>
 </html>
