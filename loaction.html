@@ -29,6 +29,7 @@
 
     <script src="./utils/aframe.min.js"></script>
     <script src="./utils/aframe-ar.min.js"></script>
+    <script src="./js/getPosition.js"></script>
     <!-- <script src="./utils/gestures.js"></script> -->
   </head>
   <!-- http://www.febeacon.com/arjs-docs-zh-cn/routes/location_based.html -->
@@ -45,10 +46,21 @@
       embedded
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
     >
-      <a-box material="color: yellow" gps-entity-place="latitude: 23.105609212707158; longitude: 113.37825610525121" />
+      <a-box id="a-box" material="color: yellow" gps-entity-place="" />
 
       <!-- <a-entity camera></a-entity> -->
       <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
   </body>
+  <script>
+    getPosition()
+      .then((res) => {
+        let { latitude, longitude } = res.data;
+        let aBox = document.querySelector("#a-box");
+        aBox.setAttribute("gps-entity-place", `latitude: ${latitude}; longitude: ${longitude}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  </script>
 </html>
