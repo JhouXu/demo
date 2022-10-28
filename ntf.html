@@ -58,6 +58,7 @@
     <script src="https://jhouxu.github.io/demo/utils/aframe-ar-nft.js"></script>
     <script src="https://jhouxu.github.io/demo/utils/aframe-extras-v6.1.0.js"></script>
     <script src="https://jhouxu.github.io/demo/utils/gesture.js"></script>
+    <script src="./js/getPosition.js"></script>
     <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
     <script>
       let isPlay = false;
@@ -148,5 +149,15 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/eruda/1.6.0/eruda.js"></script>
   <script>
     eruda.init();
+  </script>
+
+  <script>
+    getPosition()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   </script>
 </html>
