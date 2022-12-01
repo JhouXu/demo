@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cn-ZH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .arjs-loader {
+        width: 100%;
+        height: 15%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+      }
+    </style>
+
+    <script src="./utils/aframe.min.js"></script>
+    <script src="./utils/aframe-ar.min.js"></script>
+    <script src="./js/getPosition.js"></script>
+    <!-- <script src="./utils/gestures.js"></script> -->
+  </head>
+  <!-- http://www.febeacon.com/arjs-docs-zh-cn/routes/location_based.html -->
+  <body style="margin: 0px; overflow: hidden">
+    <div class="arjs-loader">
+      <div>正在加载AR模型，请稍候...</div>
+    </div>
+
+    <!-- a-frame scene -->
+    <a-scene
+      vr-mode-ui="enabled: false;"
+      gesture-detector
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+    >
+      <a-box id="a-box" material="color: yellow" gps-entity-place="" position="0 50 -50" />
+
+      <!-- <a-entity camera></a-entity> -->
+      <a-camera gps-camera rotation-reader></a-camera>
+    </a-scene>
+  </body>
+  <script>
+    getPosition()
+      .then((res) => {
+        let { latitude, longitude } = res.data;
+        let aBox = document.querySelector("#a-box");
+        aBox.setAttribute("gps-entity-place", `latitude: ${latitude}; longitude: ${longitude}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  </script>
+</html>

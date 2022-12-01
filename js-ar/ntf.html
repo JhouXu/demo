@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="cn-ZH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nft</title>
+
+    <style>
+      body {
+        /* margin: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border: 1px solid #000000;
+        box-sizing: border;
+        overflow: hidden; */
+      }
+
+      .arjs-loader {
+        width: 100%;
+        height: 15%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+      }
+
+      a-entity {
+        background-color: red;
+      }
+
+      #start-ios-wechat-camer {
+        position: absolute;
+        left: 50%;
+        bottom: 15vh;
+        transform: translateX(-50%);
+      }
+
+      #play-pause-handler {
+        position: absolute;
+        left: 50%;
+        bottom: 10vh;
+        transform: translateX(-50%);
+      }
+
+      #get-position {
+        position: absolute;
+        left: 50%;
+        bottom: 5vh;
+        transform: translateX(-50%);
+      }
+    </style>
+
+    <script src="https://jhouxu.github.io/demo/utils/aframe-master.min.js"></script>
+    <script src="https://jhouxu.github.io/demo/utils/aframe-ar-nft.js"></script>
+    <script src="https://jhouxu.github.io/demo/utils/aframe-extras-v6.1.0.js"></script>
+    <script src="https://jhouxu.github.io/demo/utils/gesture.js"></script>
+    <script src="./js/getPosition.js"></script>
+    <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
+    <script>
+      let isPlay = false;
+
+      // aframe 绑定处理程序
+      AFRAME.registerComponent("markerhandler", {
+        init: function () {
+          let { sceneEl } = this.el;
+          let dom = document.querySelector(".e-entity");
+          // 图像出现在视野时，播放模型骨骼动画
+          sceneEl.addEventListener("markerFound", () => {
+            setTimeout(() => {
+              dom.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
+              isPlay = true;
+            }, 500);
+          });
+
+          // 图像消失在视野时，暂停模型骨骼动画
+          sceneEl.addEventListener("markerLost", () => {
+            setTimeout(() => dom.setAttribute("animation-mixer", { timeScale: 0 }), 500);
+            isPlay = false;
+          });
+        },
+      });
+
+      window.onload = function () {
+        // start-ios-wechat-camer click 事件
+        document.querySelector("#start-ios-wechat-camer").addEventListener("click", (e) => {
+          alert("open camera");
+        });
+
+        document.querySelector("#play-pause-handler").addEventListener("click", (e) => {
+          if (isPlay) {
+            isPlay = false;
+            document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
+          } else {
+            document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
+            isPlay = true;
+          }
+        });
+
+        document.querySelector("#get-position").addEventListener("click", (e) => {
+          getPosition()
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      };
+    </script>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+    <div class="arjs-loader">
+      <div>正在加载AR模型，请稍候...</div>
+    </div>
+
+    <!-- a-frame scene -->
+    <a-scene
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+      gesture-detector
+    >
+      <!-- 图片训练后文件路径，不带文件拓展名！ -->
+      <!-- smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5" -->
+      <a-nft
+        markerhandler
+        type="nft"
+        url="https://jhouxu.github.io/demo/nft/sculling"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="10"
+      >
+        <!-- 展示模型的路径 -->
+        <a-entity
+          class="e-entity"
+          gltf-model="https://jhouxu.github.io/demo/glb/BrainStem.glb"
+          scale="100 100 100"
+          position="120 0 -210"
+          rotation="-90 0 0"
+          gesture-handler="minScale: 0.25; maxScale: 2"
+        >
+          <!-- -->
+        </a-entity>
+      </a-nft>
+      <!-- static camera that moves according to the device movemenents -->
+      <a-entity camera="fov: 190"></a-entity>
+    </a-scene>
+
+    <button id="start-ios-wechat-camer">开启 ios 微信端摄像</button>
+    <button id="play-pause-handler">播放暂停动画</button>
+    <button id="get-position">获取定位数据</button>
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/eruda/1.6.0/eruda.js"></script>
+  <script>
+    eruda.init();
+  </script>
+</html>
