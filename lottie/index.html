@@ -24,22 +24,58 @@
         width: 100vw !important;
         height: 149vw !important;
       }
+
+      .controller {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn {
+        margin: 5px 5px;
+        padding: 3px 5px;
+        background-color: #eee;
+        border-radius: 5px;
+        cursor: pointer;
+      }
     </style>
     <script src="https://cdn.bootcdn.net/ajax/libs/lottie-web/5.9.6/lottie.js"></script>
   </head>
   <body>
     <div id="app"></div>
+    <div class="controller">
+      <div class="btn" id="btn-play">播放</div>
+      <div class="btn" id="btn-pause">暂停</div>
+      <div class="btn" id="btn-toggle">切换</div>
+      <div class="btn" id="btn-stop">停止</div>
+      <div class="btn" id="btn-speed">设置播放速度 </div>
+      <input id="input-speed" type="number" />
+      <div class="btn" id="btn-destroy">销毁</div>
+    </div>
   </body>
   <script>
-    console.log(lottie);
-
     let l = lottie.loadAnimation({
       container: document.querySelector("#app"),
       renderer: "canvas",
       loop: true,
-      autoplay: true,
-      path: "./data/headset_anim.json",
+      autoplay: false,
+      path: "./data/headset_anim.json", // 远程：加载远程JSON文件
+      // animationData: "./data/headset_anim.json", // 本地：会加载远程JSON文件打包到JS中
     });
+
+    document.querySelector("#btn-play").addEventListener("click", () => l.play());
+    document.querySelector("#btn-pause").addEventListener("click", () => l.pause());
+    document.querySelector("#btn-toggle").addEventListener("click", () => l.togglePause());
+    document.querySelector("#btn-stop").addEventListener("click", () => l.stop());
+    document.querySelector("#btn-speed").addEventListener("click", () => {
+      if (!l.isPause) l.play();
+      let num = document.querySelector("#input-speed").value;
+      l.setSpeed(num ? num : 1);
+    });
+    document.querySelector("#btn-destroy").addEventListener("click", () => l.destroy());
+
+    console.log(lottie);
     console.log(l);
   </script>
 </html>
