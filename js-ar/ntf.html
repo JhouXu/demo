@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="cn-ZH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nft</title>
+
+    <style>
+      body {
+        /* margin: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border: 1px solid #000000;
+        box-sizing: border;
+        overflow: hidden; */
+      }
+
+      .arjs-loader {
+        width: 100%;
+        height: 15%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+      }
+
+      a-entity {
+        background-color: red;
+      }
+
+      #start-ios-wechat-camer {
+        position: absolute;
+        left: 50%;
+        bottom: 11vh;
+        transform: translateX(-50%);
+      }
+
+      #play-pause-handler {
+        position: absolute;
+        left: 50%;
+        bottom: 8vh;
+        transform: translateX(-50%);
+      }
+
+      #get-position {
+        position: absolute;
+        left: 50%;
+        bottom: 5vh;
+        transform: translateX(-50%);
+      }
+
+      #get-animation {
+        position: absolute;
+        left: 50%;
+        bottom: 2vh;
+        transform: translateX(-50%);
+      }
+    </style>
+
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-master.min.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-ar-nft.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-extras-v6.1.0.js"></script>
+    <!-- <script src="https://jhouxu.github.io/demo/js-ar/utils/gesture.js"></script> -->
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/js/getPosition.js"></script>
+    <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
+    <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+    <div class="arjs-loader">
+      <div>正在加载AR模型，请稍候...</div>
+    </div>
+
+    <!-- a-frame scene -->
+    <a-scene
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+      gesture-detector
+    >
+      <!-- 图片训练后文件路径，不带文件拓展名！ -->
+      <!-- smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5" -->
+      <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
+      <a-nft
+        markerhandler
+        type="nft"
+        url="https://jhouxu.github.io/demo/js-ar/nft/sculling"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="10"
+      >
+        <!-- 展示模型的路径 -->
+        <a-entity
+          id="e-entity"
+          class="e-entity"
+          gltf-model="https://jhouxu.github.io/demo/js-ar/glb/BrainStem.glb"
+          origin="0.5 0.5 0.5"
+          scale="100 100 100"
+          position="120 0 -210"
+          rotation="-90 0 0"
+          gesture-handler="minScale: 0.25; maxScale: 2"
+          material="opacity: 1;"
+        >
+          <!-- a-entity 中定义动画 -->
+          <a-animation attribute="material.opacity" begin="fade" to="0"></a-animation>
+        </a-entity>
+      </a-nft>
+      <!-- static camera that moves according to the device movemenents -->
+      <a-entity camera="fov: 190"></a-entity>
+    </a-scene>
+
+    <button id="start-ios-wechat-camer">开启 ios 微信端摄像</button>
+    <button id="play-pause-handler">播放暂停动画</button>
+    <button id="get-position">获取定位数据</button>
+    <!-- <button id="get-animation">e-entity event animation</button> -->
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/eruda/1.6.0/eruda.js"></script>
+  <script>
+    eruda.init();
+  </script>
+</html>
