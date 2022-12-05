@@ -8,8 +8,6 @@ AFRAME.registerComponent("markerhandler", {
 
     // 图像出现在视野时，播放模型骨骼动画
     sceneEl.addEventListener("markerFound", () => {
-      console.log("markerFound");
-
       setTimeout(() => {
         dom.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
         isPlay = true;
@@ -18,8 +16,6 @@ AFRAME.registerComponent("markerhandler", {
 
     // 图像消失在视野时，暂停模型骨骼动画
     sceneEl.addEventListener("markerLost", () => {
-      console.log("markerLost");
-
       setTimeout(() => dom.setAttribute("animation-mixer", { timeScale: 0 }), 500);
       isPlay = false;
     });
@@ -45,15 +41,19 @@ window.onload = function () {
   });
 
   // 尝试侦听模型渲染位置的事件
-  const EntityDOM = document.querySelector(".e-entity");
-  EntityDOM.addEventListener("click", (e) => animController(".e-entity", "isPlay"));
+  // const EntityDOM = document.querySelector(".e-entity");
+  // console.log(EntityDOM);
+  // EntityDOM.addEventListener("click", (e) => animController(".e-entity", "isPlay"));
+  document.querySelector("#e-entity").emit("fade");
 };
 
 function animController(domStr, storeName) {
   if (window[storeName]) {
+    // 暂停
     window[storeName] = false;
     document.querySelector(domStr).setAttribute("animation-mixer", { timeScale: 0 });
   } else {
+    // 播放
     window[storeName] = true;
     document.querySelector(domStr).setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
   }

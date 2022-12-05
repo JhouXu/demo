@@ -42,14 +42,14 @@
       #start-ios-wechat-camer {
         position: absolute;
         left: 50%;
-        bottom: 15vh;
+        bottom: 11vh;
         transform: translateX(-50%);
       }
 
       #play-pause-handler {
         position: absolute;
         left: 50%;
-        bottom: 10vh;
+        bottom: 8vh;
         transform: translateX(-50%);
       }
 
@@ -59,12 +59,20 @@
         bottom: 5vh;
         transform: translateX(-50%);
       }
+
+      #get-animation {
+        position: absolute;
+        left: 50%;
+        bottom: 2vh;
+        transform: translateX(-50%);
+      }
     </style>
 
     <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-master.min.js"></script>
     <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-ar-nft.js"></script>
     <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-extras-v6.1.0.js"></script>
-    <script src="https://jhouxu.github.io/demo/js-ar/utils/gesture.js"></script>
+    <!-- <script src="https://jhouxu.github.io/demo/js-ar/utils/gesture.js"></script> -->
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
     <script src="https://jhouxu.github.io/demo/js-ar/js/getPosition.js"></script>
     <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
     <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script>
@@ -97,14 +105,18 @@
       >
         <!-- 展示模型的路径 -->
         <a-entity
+          id="e-entity"
           class="e-entity"
           gltf-model="https://jhouxu.github.io/demo/js-ar/glb/BrainStem.glb"
+          origin="0.5 0.5 0.5"
           scale="100 100 100"
           position="120 0 -210"
           rotation="-90 0 0"
           gesture-handler="minScale: 0.25; maxScale: 2"
+          material="opacity: 1;"
         >
-          <!-- -->
+          <!-- a-entity 中定义动画 -->
+          <a-animation attribute="material.opacity" begin="fade" to="0"></a-animation>
         </a-entity>
       </a-nft>
       <!-- static camera that moves according to the device movemenents -->
@@ -114,6 +126,7 @@
     <button id="start-ios-wechat-camer">开启 ios 微信端摄像</button>
     <button id="play-pause-handler">播放暂停动画</button>
     <button id="get-position">获取定位数据</button>
+    <!-- <button id="get-animation">e-entity event animation</button> -->
   </body>
   <script src="https://cdn.bootcdn.net/ajax/libs/eruda/1.6.0/eruda.js"></script>
   <script>
