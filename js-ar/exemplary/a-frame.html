@@ -10,6 +10,18 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <!-- a-frame 附加组件 - 包含动画播放 -->
     <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
+
+    <script>
+      AFRAME.registerComponent("event", {
+        init: function () {
+          let { el } = this;
+
+          el.addEventListener("click", (event) => {
+            console.log("click");
+          });
+        },
+      });
+    </script>
   </head>
   <body>
     <a-scene renderer="colorManagement: true;">
@@ -20,12 +32,12 @@
 
       <!-- 渲染机器人 -->
       <a-entity id="render-robot">
-        <a-entity position="0 -1 -3" gltf-model="#robot" animation-mixer shadow="cast: true; receive: false">
+        <a-entity event position="0 -1 -3" gltf-model="#robot" animation-mixer shadow="cast: true; receive: false" animation-mixer="timeScale: 0">
         </a-entity>
       </a-entity>
 
       <!-- 渲染飞船 -->
-      <a-entity id="render-ship">
+      <!-- <a-entity id="render-ship">
         <a-entity
           scale="0.2 0.2 0.2"
           position="-8 5 -10"
@@ -34,7 +46,7 @@
           animation-mixer
           animation="property: position; to: 1 5 -10; dur: 9999; easing: linear; loop: true"
         ></a-entity>
-      </a-entity>
+      </a-entity> -->
 
       <a-sky color="#222"></a-sky>
       <a-entity camera active="true"></a-entity>
