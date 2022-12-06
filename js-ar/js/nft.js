@@ -22,6 +22,16 @@ AFRAME.registerComponent("markerhandler", {
   },
 });
 
+AFRAME.registerComponent("event", {
+  init: function () {
+    let { el } = this;
+
+    el.addEventListener("click", () => {
+      console.log("click");
+    });
+  },
+});
+
 window.onload = function () {
   // start-ios-wechat-camer click 事件
   document.querySelector("#start-ios-wechat-camer").addEventListener("click", (e) => {
