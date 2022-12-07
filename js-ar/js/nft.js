@@ -34,15 +34,15 @@ AFRAME.registerComponent("markerhandler", {
   },
 });
 
-AFRAME.registerComponent("event", {
-  init: function () {
-    let { el } = this;
+// AFRAME.registerComponent("event", {
+//   init: function () {
+//     let { el } = this;
 
-    el.addEventListener("click", () => {
-      console.log("click");
-    });
-  },
-});
+//     el.addEventListener("click", () => {
+//       console.log("click");
+//     });
+//   },
+// });
 
 window.onload = function () {
   // start-ios-wechat-camer click 事件
