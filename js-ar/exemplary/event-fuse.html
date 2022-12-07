@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://rawgit.com/aframevr/aframe/b813db0614ac2b518e547105e810b5b6eccfe1c8/dist/aframe.min.js"></script>
+  </head>
+  <body>
+    <script>
+      AFRAME.registerComponent("set-sky", {
+        schema: { default: "" },
+        init() {
+          const sky = document.querySelector("a-sky");
+          this.el.addEventListener("click", () => {
+            sky.setAttribute("src", this.data);
+          });
+        },
+      });
+    </script>
+
+    <a-scene>
+      <a-camera position="0 2 4">
+        <a-cursor color="#4CC3D9" fuse="true" timeout="10"></a-cursor>
+      </a-camera>
+
+      <a-sphere
+        color="#F44336"
+        radius="1"
+        position="-4 2 0"
+        set-sky="https://c3.staticflickr.com/2/1475/26239222850_cabde81c39_k.jpg"
+      ></a-sphere>
+
+      <a-sphere
+        color="#FFEB3B"
+        radius="1"
+        position="4 2 0"
+        set-sky="https://img.zcool.cn/community/01a5555e708712a8012165187ca0e4.jpg@3000w_1l_0o_100sh.jpg"
+      ></a-sphere>
+
+      <a-sky></a-sky>
+    </a-scene>
+  </body>
+</html>
