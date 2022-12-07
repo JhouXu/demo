@@ -75,8 +75,7 @@
     <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
     <script src="https://jhouxu.github.io/demo/js-ar/js/getPosition.js"></script>
     <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
-    <!-- <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script> -->
-    <script src="./js/nft.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden">
     <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
@@ -96,15 +95,16 @@
       <!-- smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5" -->
       <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
 
-      <a-assets>
+      <!-- <a-assets>
         <img
           id="logo"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
         />
-      </a-assets>
+      </a-assets> -->
 
       <a-nft
         markerhandler
+        class="animation-marker"
         type="nft"
         url="https://jhouxu.github.io/demo/js-ar/nft/sculling"
         smooth="true"
@@ -112,12 +112,11 @@
         smoothTolerance=".01"
         smoothThreshold="10"
       >
-        <a-image src="#logo" width="100" height="100"></a-image>
+        <!-- <a-image src="#logo" width="100" height="100"></a-image> -->
 
         <!-- 展示模型的路径 -->
         <a-entity
-          id="e-entity"
-          class="e-entity"
+          id="animation-model"
           gltf-model="https://jhouxu.github.io/demo/js-ar/glb/BrainStem.glb"
           origin="0.5 0.5 0.5"
           scale="100 100 100"

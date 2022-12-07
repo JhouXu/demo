@@ -19,6 +19,18 @@ AFRAME.registerComponent("markerhandler", {
       setTimeout(() => dom.setAttribute("animation-mixer", { timeScale: 0 }), 500);
       isPlay = false;
     });
+
+    // a-frame and arjs 点击事件绑定
+    const animatedMarker = document.querySelector("#animated-marker");
+    const aEntity = document.querySelector("#animated-model");
+    animatedMarker.addEventListener("click", (e, target) => {
+      const intersectedElement = e && e.detail && e.detail.intersectedEl;
+      if (aEntity && intersectedElement === aEntity) {
+        const scale = aEntity.getAttribute("scale");
+        Object.keys(scale).forEach((key) => (scale[key] = scale[key] + 1));
+        aEntity.setAttribute("scale", scale);
+      }
+    });
   },
 });
 
@@ -54,7 +66,7 @@ window.onload = function () {
   // const EntityDOM = document.querySelector(".e-entity");
   // console.log(EntityDOM);
   // EntityDOM.addEventListener("click", (e) => animController(".e-entity", "isPlay"));
-  document.querySelector("#e-entity").emit("fade");
+  // document.querySelector("#e-entity").emit("fade");
 };
 
 function animController(domStr, storeName) {
