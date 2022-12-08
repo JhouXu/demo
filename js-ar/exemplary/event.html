@@ -1,100 +1,147 @@
 <!DOCTYPE html>
 <html lang="zn-CN">
   <head>
+    <!-- <meta
+      http-equiv="origin-trial"
+      data-feature="WebVR (For Chrome M59+)"
+      data-expires="2017-07-28"
+      content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ=="
+    /> -->
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <title>A-frame</title>
 
     <!-- a-frame 渲染引擎 -->
-    <!-- <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> -->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <!-- a-frame 附加组件 - 包含动画播放 -->
     <!-- <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script> -->
 
-    <!-- a-frame 官方使用插件 -->
-    <!-- <script src="https://aframe.io/aframe/dist/aframe-master.min.js"></script> -->
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-    <!-- <script src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script> -->
+    <!-- a-frame 案例使用插件 -->
+    <!-- <script src="../js/aframe-master.min.js"></script> -->
+    <script src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
 
     <script>
       AFRAME.registerComponent("event", {
         init: function () {
-          const itemEls = (this.itemEls = this.el.querySelectorAll(".item"));
+          const { el } = this;
           this.onClick = this.onClick.bind(this);
-          this.onMouseenter = this.onMouseenter.bind(this);
-
-          console.log(itemEls);
-          // for (let item of itemEls) {
-          //   item.addEventListener("click", this.onClick);
-          //   item.addEventListener("click", this.onMouseenter);
-          // }
-          for (var i = 0; i < itemEls.length; ++i) {
-            itemEls[i].addEventListener("mouseenter", this.onMouseEnter);
-            itemEls[i].addEventListener("click", this.onClick);
-          }
+          el.addEventListener("click", this.onClick);
         },
 
         onClick: function (evt) {
           console.log(evt);
-        },
-
-        onMouseenter: function (evt) {
-          console.log(evt);
+          // console.log("event click");
         },
       });
 
-      AFRAME.registerComponent("change-color-on-hover", {
-        schema: {
-          color: { default: "red" },
-        },
-
+      AFRAME.registerComponent("event-item", {
         init: function () {
-          var data = this.data;
-          var el = this.el; // <a-box>
-          var defaultColor = el.getAttribute("material").color;
+          const { el } = this;
+          this.onClick = this.onClick.bind(this);
+          el.addEventListener("click", this.onClick);
+          // el.object3D.scale.set(1.2, 1.2, 1.2);
+        },
 
-          el.addEventListener("mouseenter", function () {
-            el.setAttribute("color", data.color);
-          });
-
-          el.addEventListener("mouseleave", function () {
-            el.setAttribute("color", defaultColor);
-          });
+        onClick: function (evt) {
+          console.log("event-item click");
+          evt.target.object3D.scale.set(1.2, 1.2, 1.2);
         },
       });
+
+      // AFRAME.registerComponent("highlight", {
+      //   init: function () {
+      //     var buttonEls = (this.buttonEls = this.el.querySelectorAll(".menu-button"));
+
+      //     // var backgroundEl = document.querySelector("#background");
+      //     this.onClick = this.onClick.bind(this);
+      //     this.onMouseEnter = this.onMouseEnter.bind(this);
+      //     this.onMouseLeave = this.onMouseLeave.bind(this);
+      //     // this.reset = this.reset.bind(this);
+      //     // backgroundEl.addEventListener("click", this.reset);
+
+      //     for (let item of buttonEls) {
+      //       item.addEventListener("mouseenter", this.onMouseEnter);
+      //       item.addEventListener("mouseleave", this.onMouseLeave);
+      //       item.addEventListener("click", this.onClick);
+      //     }
+      //   },
+
+      //   onClick: function (evt) {
+      //     evt.target.pause();
+      //     evt.target.setAttribute("material", "color", "#046de7");
+      //     this.el.addState("clicked");
+      //     evt.target.object3D.scale.set(1.2, 1.2, 1.2);
+      //   },
+
+      //   onMouseEnter: function (evt) {
+      //     var buttonEls = this.buttonEls;
+      //     evt.target.setAttribute("material", "color", "#046de7");
+      //     for (var i = 0; i < buttonEls.length; ++i) {
+      //       if (evt.target === buttonEls[i]) {
+      //         continue;
+      //       }
+      //       buttonEls[i].setAttribute("material", "color", "white");
+      //     }
+      //   },
+
+      //   onMouseLeave: function (evt) {
+      //     if (this.el.is("clicked")) {
+      //       return;
+      //     }
+      //     evt.target.setAttribute("material", "color", "white");
+      //   },
+
+      //   reset: function () {
+      //     var buttonEls = this.buttonEls;
+      //     for (var i = 0; i < buttonEls.length; ++i) {
+      //       this.el.removeState("clicked");
+      //       buttonEls[i].play();
+      //       buttonEls[i].emit("mouseleave");
+      //     }
+      //   },
+      // });
     </script>
   </head>
   <body>
     <!-- 创建场景 -->
     <!-- renderer="colorManagement: true;" -->
-    <a-scene environment>
+    <a-scene background="color: #212" raycaster="objects: .item" cursor="rayOrigin: mouse; fuse: false" environment>
       <!-- 资源加载 -->
-      <a-assets timeout="30000">
+      <a-assets>
         <a-assets-item id="robot" src="../glb/BrainStem.glb"></a-assets-item>
         <a-assets-item id="ship" src="../glb/ship.glb"></a-assets-item>
+
+        <!-- <a-mixin
+          id="frame"
+          geometry="primitive: plane; width: 0.5783552; height: 0.8192"
+          material="color: white; shader: flat"
+          animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+        ></a-mixin> -->
       </a-assets>
 
+      <a-box event id="yellow" color="yellow" position="0 1 -3" rotation="45 0 0" class="item yellow"></a-box>
+      <a-box event id="purple" color="purple" position="-1 1 -3" rotation="0 45 0" class="item purple"></a-box>
+      <a-box event id="blue" color="blue" position="0 1 1" rotation="0 0 0" class="item blue"> </a-box>
+
       <!-- 实体渲染 -->
-      <a-entity id="menu" event>
-        <a-box id="tomato" class="item tomato" color="tomato" position="0 1 -3" rotation="45 0 0"></a-box>
-        <a-box id="purple" class="item purple" color="purple" position="-1 1 -3" rotation="0 45 0"></a-box>
-        <a-box
-          id="blue"
-          class="item blue"
-          color="blue"
-          position="0 1 1"
-          rotation="0 0 0"
-          change-color-on-hover="yellow"
-        >
-        </a-box>
-      </a-entity>
+      <!-- <a-entity position="0 1.6 -2.5" highlight event>
+        <a-box id="yellow" color="yellow" position="0 1 -3" mixin="" rotation="45 0 0" class="item yellow"></a-box>
+        <a-box id="purple" color="purple" position="-1 1 -3" mixin="" rotation="0 45 0" class="item purple"></a-box>
+        <a-box id="blue" color="blue" position="0 1 1" mixin="" rotation="0 0 0" class="item blue"> </a-box>
+
+        <a-entity id="karigurashiButton" position="-0.8 0 0" mixin="frame" class="item"></a-entity>
+        <a-entity id="kazetachinuButton" position="0 0 0" mixin="frame" class="item"></a-entity>
+        <a-entity id="ponyoButton" position="0.8 0 0" mixin="frame" class="item"> </a-entity>
+      </a-entity> -->
 
       <a-sky color="#222"></a-sky>
       <a-entity camera active="true" position="0 3 6"></a-entity>
 
-      <a-camera position="0 3 6">
-        <a-cursor color="#4CC3D9" fuse="true" timeout="10"></a-cursor>
-      </a-camera>
+      <!-- <a-camera position="0 3 6">
+        <a-cursor color="#4CC3D9" fuse="true" timeout="0"></a-cursor>
+      </a-camera> -->
       <!-- <a-camera> <a-cursor> </a-cursor> </a-camera> -->
       <!-- <a-entity
         position="0 3 6"
@@ -120,10 +167,24 @@
         class="raycastable"
       >
       </a-entity> -->
+
+      <!-- <a-entity
+        position="0 1.6 0"
+        camera
+        look-controls="magicWindowTrackingEnabled: false; touchEnabled: false; mouseEnabled: false"
+      >
+        <a-entity
+          id="fadeBackground"
+          geometry="primitive: sphere; radius: 2.5"
+          material="color: black; side: back; shader: flat; transparent: true; opacity: 0.6"
+          visible="false"
+        >
+        </a-entity>
+      </a-entity> -->
     </a-scene>
   </body>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.js"></script>
   <script>
-    // new VConsole();
+    new VConsole();
   </script>
 </html>

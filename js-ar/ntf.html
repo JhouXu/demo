@@ -78,8 +78,8 @@
 
     <script src="https://jhouxu.github.io/demo/js-ar/js/getPosition.js"></script>
     <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
-    <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script>
-    <!-- <script src="./js/nft.js"></script> -->
+    <!-- <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script> -->
+    <script src="./js/nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden">
     <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
@@ -89,49 +89,52 @@
 
     <!-- a-frame scene -->
     <a-scene
-      vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true;"
+      arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
       embedded
-      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
       gesture-detector
+      id="scene"
     >
       <!-- 图片训练后文件路径，不带文件拓展名！ -->
       <!-- smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5" -->
       <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
 
-      <!-- <a-assets>
+      <a-assets>
         <img
           id="logo"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
         />
-      </a-assets> -->
+      </a-assets>
 
       <a-nft
-        markerhandler
         class="animation-marker"
         type="nft"
         url="https://jhouxu.github.io/demo/js-ar/nft/sculling"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
-        smoothThreshold="10"
+        smoothThreshold="5"
+        cursor="rayOrigin: mouse"
+        raycaster="objects: .entity"
+        markerhandler
       >
-        <!-- <a-image src="#logo" width="100" height="100"></a-image> -->
+        <!-- <a-image src="#logo" width="1000" height="1000" position="1 1 1" rotation="90 0 0"></a-image> -->
+
+        <a-box event id="yellow" color="yellow" position="0 1 -3" rotation="45 0 0" class="item yellow"></a-box>
 
         <!-- 展示模型的路径 -->
         <a-entity
+          class="entity"
           id="animation-model"
-          class="e-entity"
-          gltf-model="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb"
-          origin="0.5 0.5 0.5"
-          scale="100 100 100"
+          gltf-model="./glb/CesiumMan.gltf"
           position="120 0 -210"
           rotation="-90 0 0"
-          gesture-handler="minScale: 0.25; maxScale: 2"
+          scale="100 100 100"
           material="opacity: 1;"
+          gesture-handler="minScale: 0.25; maxScale: 2"
+          event
         >
-          <!-- a-entity 中定义动画 -->
-          <a-animation attribute="material.opacity" begin="fade" to="0"></a-animation>
         </a-entity>
       </a-nft>
       <!-- static camera that moves according to the device movemenents -->

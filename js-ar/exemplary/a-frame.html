@@ -7,9 +7,10 @@
     <title>A-frame</title>
 
     <!-- a-frame 渲染引擎 -->
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <!-- a-frame 附加组件 - 包含动画播放 -->
     <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
 
     <script>
       AFRAME.registerComponent("event", {
@@ -17,15 +18,24 @@
           const { el } = this;
           el.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
           setTimeout((e) => {
-            el.setAttribute("animation-mixer", { timeScale: 0 });
-            console.log("model done");
+            // el.setAttribute("animation-mixer", { timeScale: 0 });
+            // console.log("model done");
           }, 2300);
+
+          this.onClick = this.onClick.bind(this);
+          el.addEventListener("click", this.onClick);
+        },
+
+        onClick: function (evt) {
+          // console.log("onclick");
+          alert("click");
+          console.log(evt);
         },
       });
     </script>
   </head>
   <body>
-    <a-scene renderer="colorManagement: true;">
+    <a-scene renderer="colorManagement: true;" cursor="rayOrigin: mouse;" environment>
       <a-assets timeout="30000">
         <a-assets-item id="robot" src="../glb/BrainStem.glb"></a-assets-item>
         <a-assets-item id="ship" src="../glb/ship.glb"></a-assets-item>
@@ -34,8 +44,19 @@
 
       <!-- 渲染机器人 -->
       <a-entity id="render-robot">
-        <a-entity event id="man" position="0 -1 -3" gltf-model="#man" shadow="cast: true; receive: false"> </a-entity>
+        <a-entity
+          event
+          id="man"
+          gltf-model="#man"
+          shadow="cast: true; receive: false"
+          position="0 0 -3"
+          rotation="0 0 0"
+          scale="3 3 3"
+        >
+        </a-entity>
       </a-entity>
+
+      <a-box event id="yellow" color="yellow" position="0 1 -3" rotation="45 0 0" class="item yellow"></a-box>
 
       <!-- 渲染飞船 -->
       <!-- <a-entity id="render-ship">
@@ -50,11 +71,11 @@
       </a-entity> -->
 
       <a-sky color="#222"></a-sky>
-      <a-entity camera active="true"></a-entity>
+      <a-entity camera active="true" position="0 3 2"></a-entity>
     </a-scene>
   </body>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.js"></script>
   <script>
-    // new VConsole();
+    new VConsole();
   </script>
 </html>

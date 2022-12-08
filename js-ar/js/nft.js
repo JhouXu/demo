@@ -4,10 +4,15 @@ window.isPlay = false;
 AFRAME.registerComponent("markerhandler", {
   init: function () {
     let { sceneEl } = this.el; // this.el === <a-nft></a-nft>>
-    let dom = document.querySelector(".e-entity"); // dom === <a-entity></a-entity>
+    let dom = document.querySelector(".entity"); // dom === <a-entity></a-entity>
+    this.dom = dom;
+
+    // sceneEl.addEventListener("click", () => {
+    //   console.log("click");
+    // });
 
     // 图像出现在视野时，播放模型骨骼动画
-    sceneEl.addEventListener("markerFound", () => {
+    sceneEl.addEventListener("markerFound", (evt) => {
       setTimeout(() => {
         dom.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
         isPlay = true;
@@ -31,18 +36,24 @@ AFRAME.registerComponent("markerhandler", {
         aEntity.setAttribute("scale", scale);
       }
     });
+
+    const eEntity = this.el.querySelectorAll(".entity");
+    console.log(eEntity);
   },
 });
 
-// AFRAME.registerComponent("event", {
-//   init: function () {
-//     let { el } = this;
+AFRAME.registerComponent("event", {
+  init: function () {
+    const { el } = this;
+    this.onClick = this.onClick.bind(this);
+    el.addEventListener("click", this.onClick);
+  },
 
-//     el.addEventListener("click", () => {
-//       console.log("click");
-//     });
-//   },
-// });
+  onClick: function () {
+    alert("click");
+    // console.log("click");
+  },
+});
 
 window.onload = function () {
   // start-ios-wechat-camer click 事件
@@ -61,12 +72,6 @@ window.onload = function () {
         console.log(err);
       });
   });
-
-  // 尝试侦听模型渲染位置的事件
-  // const EntityDOM = document.querySelector(".e-entity");
-  // console.log(EntityDOM);
-  // EntityDOM.addEventListener("click", (e) => animController(".e-entity", "isPlay"));
-  // document.querySelector("#e-entity").emit("fade");
 };
 
 function animController(domStr, storeName) {
@@ -80,3 +85,13 @@ function animController(domStr, storeName) {
     document.querySelector(domStr).setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
   }
 }
+
+setTimeout(() => {
+  var sceneEl = document.querySelector("a-scene");
+  var entity = sceneEl.querySelector("a-entity");
+  entity.setAttribute("position", { x: 120, y: 0, z: -210 });
+  entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
+  entity.setAttribute("scale", { x: 100, y: 100, z: 100 });
+
+  console.log("重置样式");
+}, 10000);
