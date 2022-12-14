@@ -58,6 +58,9 @@ AFRAME.registerComponent("event", {
 AFRAME.registerComponent("cursor-listener", {
   init: function () {
     const { el } = this;
+
+    console.log(el);
+
     el.addEventListener("click", function (evt) {
       console.log("you click this");
     });
