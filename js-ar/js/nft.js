@@ -55,6 +55,15 @@ AFRAME.registerComponent("event", {
   },
 });
 
+AFRAME.registerComponent("cursor-listener", {
+  init: function () {
+    const { el } = this;
+    el.addEventListener("click", function (evt) {
+      console.log("you click this");
+    });
+  },
+});
+
 window.onload = function () {
   // start-ios-wechat-camer click 事件
   document.querySelector("#start-ios-wechat-camer").addEventListener("click", (e) => {

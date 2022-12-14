@@ -79,7 +79,7 @@
     <script src="https://jhouxu.github.io/demo/js-ar/js/getPosition.js"></script>
     <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
     <!-- <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script> -->
-    <script src="./js/nft.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden">
     <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
@@ -121,7 +121,14 @@
       >
         <!-- <a-image src="#logo" width="1000" height="1000" position="1 1 1" rotation="90 0 0"></a-image> -->
 
-        <a-box event id="yellow" color="yellow" position="0 1 -3" rotation="45 0 0" class="item yellow"></a-box>
+        <a-box
+          cursor-listener
+          id="yellow"
+          color="yellow"
+          position="0 1 -3"
+          rotation="45 0 0"
+          class="item yellow"
+        ></a-box>
 
         <!-- 展示模型的路径 -->
         <a-entity
