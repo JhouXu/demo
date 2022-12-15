@@ -64,6 +64,10 @@ AFRAME.registerComponent("cursor-listener", {
     el.addEventListener("click", function (evt) {
       console.log("you click this");
     });
+
+    el.addEventListener("touchstart", function (evt) {
+      console.log("touchstart: you click this");
+    });
   },
 });
 
