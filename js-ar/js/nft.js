@@ -1,15 +1,27 @@
 window.isPlay = false;
 
 // aframe 绑定处理程序
-AFRAME.registerComponent("markerhandler", {
+AFRAME.registerComponent("marker-handler", {
   init: function () {
     let { sceneEl } = this.el; // this.el === <a-nft></a-nft>>
     let dom = document.querySelector(".entity"); // dom === <a-entity></a-entity>
     this.dom = dom;
 
-    // sceneEl.addEventListener("click", () => {
-    //   console.log("click");
-    // });
+    sceneEl.addEventListener("click", () => {
+      console.log("click");
+    });
+
+    sceneEl.addEventListener("touchstart", () => {
+      console.log("touchstart");
+    });
+
+    sceneEl.addEventListener("touchmove", () => {
+      console.log("touchmove");
+    });
+
+    sceneEl.addEventListener("touchend", () => {
+      console.log("touchend");
+    });
 
     // 图像出现在视野时，播放模型骨骼动画
     sceneEl.addEventListener("markerFound", (evt) => {
@@ -39,22 +51,6 @@ AFRAME.registerComponent("markerhandler", {
 
     const eEntity = this.el.querySelectorAll(".entity");
     console.log(eEntity);
-  },
-});
-
-AFRAME.registerComponent("cursor-listener", {
-  init: function () {
-    const { el } = this;
-
-    console.log(el);
-
-    el.addEventListener("click", function (evt) {
-      console.log("you click this");
-    });
-
-    el.addEventListener("touchstart", function (evt) {
-      console.log("touchstart: you click this");
-    });
   },
 });
 
