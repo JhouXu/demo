@@ -42,19 +42,6 @@ AFRAME.registerComponent("markerhandler", {
   },
 });
 
-AFRAME.registerComponent("event", {
-  init: function () {
-    const { el } = this;
-    this.onClick = this.onClick.bind(this);
-    el.addEventListener("click", this.onClick);
-  },
-
-  onClick: function () {
-    alert("click");
-    // console.log("click");
-  },
-});
-
 AFRAME.registerComponent("cursor-listener", {
   init: function () {
     const { el } = this;
