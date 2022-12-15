@@ -23,6 +23,10 @@ AFRAME.registerComponent("marker-handler", {
       console.log("touchend");
     });
 
+    sceneEl.addEventListener("mousedown", () => {
+      console.log("mousedown");
+    });
+
     // 图像出现在视野时，播放模型骨骼动画
     sceneEl.addEventListener("markerFound", (evt) => {
       setTimeout(() => {
