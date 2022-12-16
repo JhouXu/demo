@@ -118,17 +118,18 @@
         smoothThreshold="5"
         cursor="rayOrigin: mouse"
         raycaster="objects: .entity"
+        marker-handler
       >
         <!-- <a-image src="#logo" width="1000" height="1000" position="1 1 1" rotation="90 0 0"></a-image> -->
 
-        <!-- <a-box
+        <a-box
           cursor-listener
           id="yellow"
           color="yellow"
           position="0 1 -3"
           rotation="45 0 0"
           class="item yellow"
-        ></a-box> -->
+        ></a-box>
 
         <!-- 展示模型的路径 -->
         <a-entity
@@ -140,7 +141,7 @@
           scale="100 100 100"
           material="opacity: 1;"
           gesture-handler="minScale: 0.25; maxScale: 2"
-          marker-handler
+          event
         >
         </a-entity>
       </a-nft>
