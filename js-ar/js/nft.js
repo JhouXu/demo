@@ -7,26 +7,6 @@ AFRAME.registerComponent("marker-handler", {
     let dom = document.querySelector(".entity"); // dom === <a-entity></a-entity>
     this.dom = dom;
 
-    sceneEl.addEventListener("click", () => {
-      console.log("click");
-    });
-
-    sceneEl.addEventListener("touchstart", () => {
-      console.log("touchstart");
-    });
-
-    sceneEl.addEventListener("touchmove", () => {
-      console.log("touchmove");
-    });
-
-    sceneEl.addEventListener("touchend", () => {
-      console.log("touchend");
-    });
-
-    sceneEl.addEventListener("mousedown", () => {
-      console.log("mousedown");
-    });
-
     // 图像出现在视野时，播放模型骨骼动画
     sceneEl.addEventListener("markerFound", (evt) => {
       setTimeout(() => {
@@ -55,6 +35,32 @@ AFRAME.registerComponent("marker-handler", {
 
     const eEntity = this.el.querySelectorAll(".entity");
     console.log(eEntity);
+  },
+});
+
+AFRAME.registerComponent("event-handler", {
+  init: function () {
+    const { el } = this;
+
+    el.addEventListener("click", () => {
+      console.log("click");
+    });
+
+    el.addEventListener("touchstart", () => {
+      console.log("touchstart");
+    });
+
+    el.addEventListener("touchmove", () => {
+      console.log("touchmove");
+    });
+
+    el.addEventListener("touchend", () => {
+      console.log("touchend");
+    });
+
+    el.addEventListener("mousedown", () => {
+      console.log("mousedown");
+    });
   },
 });
 
