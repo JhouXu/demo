@@ -40,25 +40,25 @@ AFRAME.registerComponent("marker-handler", {
 
 AFRAME.registerComponent("event-handler", {
   init: function () {
-    const { el } = this;
+    let { sceneEl } = this.el;
 
-    el.addEventListener("click", () => {
+    sceneEl.addEventListener("click", () => {
       console.log("click");
     });
 
-    el.addEventListener("touchstart", () => {
+    sceneEl.addEventListener("touchstart", () => {
       console.log("touchstart");
     });
 
-    el.addEventListener("touchmove", () => {
+    sceneEl.addEventListener("touchmove", () => {
       console.log("touchmove");
     });
 
-    el.addEventListener("touchend", () => {
+    sceneEl.addEventListener("touchend", () => {
       console.log("touchend");
     });
 
-    el.addEventListener("mousedown", () => {
+    sceneEl.addEventListener("mousedown", () => {
       console.log("mousedown");
     });
   },
