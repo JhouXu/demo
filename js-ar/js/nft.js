@@ -37,6 +37,7 @@ AFRAME.registerComponent("marker-handler", {
     console.log(eEntity);
 
     reset();
+    initMarkHandle();
   },
 });
 
@@ -107,4 +108,17 @@ function reset() {
 
     console.log("重置样式");
   }, 10000);
+}
+
+function initMarkHandle() {
+  const MarkHead = document.querySelector(".mark .head img");
+  const MarkBody = document.querySelector(".mark .body img");
+
+  MarkHead.addEventListener("click", () => {
+    alert("click head");
+  });
+
+  MarkBody.addEventListener("click", () => {
+    alert("click body");
+  });
 }
