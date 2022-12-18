@@ -111,6 +111,8 @@ function animController(domStr, storeName) {
   const MarkHead = document.querySelector(".mark .head img");
   const MarkBody = document.querySelector(".mark .body img");
 
+  console.log(MarkBody);
+
   MarkHead.addEventListener("click", () => {
     alert("click head");
   });
