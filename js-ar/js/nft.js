@@ -104,6 +104,8 @@ function animController(domStr, storeName) {
     entity.setAttribute("scale", { x: 100, y: 100, z: 100 });
 
     console.log("重置样式");
+
+    document.querySelector(".mark").style.display = "flex";
   }, 10000);
 })();
 
