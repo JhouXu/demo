@@ -66,6 +66,18 @@
         bottom: 2vh;
         transform: translateX(-50%);
       }
+
+      .mark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+      }
     </style>
 
     <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-master.min.js"></script>
@@ -141,6 +153,15 @@
       <!-- static camera that moves according to the device movemenents -->
       <a-entity camera="fov: 190"> </a-entity>
     </a-scene>
+
+    <div class="mark">
+      <div class="head">
+        <img src="./images/mark-head.png" />
+      </div>
+      <div class="body">
+        <img src="./images/mark-body.png" />
+      </div>
+    </div>
 
     <button id="start-ios-wechat-camer">开启 ios 微信端摄像</button>
     <button id="play-pause-handler">播放暂停动画</button>
