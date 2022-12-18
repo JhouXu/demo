@@ -92,6 +92,8 @@ window.onload = function () {
 
       console.log("重置样式");
 
+      document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
+
       document.querySelector(".mark").style.display = "flex";
     }, 10000);
   })();
