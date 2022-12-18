@@ -1,5 +1,29 @@
 window.isPlay = false;
 
+function reset() {
+  setTimeout(() => {
+    var sceneEl = document.querySelector("a-scene");
+    var entity = sceneEl.querySelector("a-entity");
+    entity.setAttribute("position", { x: 120, y: 0, z: -210 });
+    entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
+    entity.setAttribute("scale", { x: 100, y: 100, z: 100 });
+
+    console.log("重置样式");
+  }, 10000);
+}
+
+function initMarkHandle() {
+  const MarkHead = document.querySelector(".mark .head img");
+  const MarkBody = document.querySelector(".mark .body img");
+
+  MarkHead.addEventListener("click", () => {
+    alert("click head");
+  });
+
+  MarkBody.addEventListener("click", () => {
+    alert("click body");
+  });
+}
 // aframe 绑定处理程序
 AFRAME.registerComponent("marker-handler", {
   init: function () {
@@ -96,29 +120,4 @@ function animController(domStr, storeName) {
     window[storeName] = true;
     document.querySelector(domStr).setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
   }
-}
-
-function reset() {
-  setTimeout(() => {
-    var sceneEl = document.querySelector("a-scene");
-    var entity = sceneEl.querySelector("a-entity");
-    entity.setAttribute("position", { x: 120, y: 0, z: -210 });
-    entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
-    entity.setAttribute("scale", { x: 100, y: 100, z: 100 });
-
-    console.log("重置样式");
-  }, 10000);
-}
-
-function initMarkHandle() {
-  const MarkHead = document.querySelector(".mark .head img");
-  const MarkBody = document.querySelector(".mark .body img");
-
-  MarkHead.addEventListener("click", () => {
-    alert("click head");
-  });
-
-  MarkBody.addEventListener("click", () => {
-    alert("click body");
-  });
 }
