@@ -95,12 +95,12 @@ function animController(domStr, storeName) {
   }
 }
 
-setTimeout(() => {
-  var sceneEl = document.querySelector("a-scene");
-  var entity = sceneEl.querySelector("a-entity");
-  entity.setAttribute("position", { x: 120, y: 0, z: -210 });
-  entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
-  entity.setAttribute("scale", { x: 100, y: 100, z: 100 });
+// setTimeout(() => {
+//   var sceneEl = document.querySelector("a-scene");
+//   var entity = sceneEl.querySelector("a-entity");
+//   entity.setAttribute("position", { x: 120, y: 0, z: -210 });
+//   entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
+//   entity.setAttribute("scale", { x: 100, y: 100, z: 100 });
 
-  console.log("重置样式");
-}, 10000);
+//   console.log("重置样式");
+// }, 10000);
