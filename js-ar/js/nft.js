@@ -108,8 +108,8 @@ function animController(domStr, storeName) {
 })();
 
 (() => {
-  const MarkHead = document.querySelector(".mark .head img");
-  const MarkBody = document.querySelector(".mark .body img");
+  const MarkHead = document.querySelector(".mark .head");
+  const MarkBody = document.querySelector(".mark .body");
 
   console.log(MarkBody);
 
