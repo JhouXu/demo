@@ -32,16 +32,6 @@ AFRAME.registerComponent("marker-handler", {
         aEntity.setAttribute("scale", scale);
       }
     });
-
-    const eEntity = this.el.querySelectorAll(".entity");
-    console.log(eEntity);
-
-    for (const [item, key] of eEntity.entity()) {
-      console.log(item);
-      item.addEventListener("click", () => {
-        console.log(key);
-      });
-    }
   },
 });
 
@@ -68,6 +58,14 @@ AFRAME.registerComponent("event-handler", {
     sceneEl.addEventListener("mousedown", () => {
       console.log("mousedown");
     });
+  },
+});
+
+AFRAME.registerComponent("parent-handler", {
+  init: function () {
+    const { el } = this;
+
+    console.log(el);
   },
 });
 
