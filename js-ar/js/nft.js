@@ -35,6 +35,13 @@ AFRAME.registerComponent("marker-handler", {
 
     const eEntity = this.el.querySelectorAll(".entity");
     console.log(eEntity);
+
+    for (const [item, key] of eEntity.entity()) {
+      console.log(item);
+      item.addEventListener("click", () => {
+        console.log(key);
+      });
+    }
   },
 });
 
