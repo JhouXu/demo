@@ -136,7 +136,8 @@ window.onload = function () {
       console.log("重置样式");
 
       // 暂停动画播放
-      animController(".e-entity", "isPlay");
+      // animController(".e-entity", "isPlay");
+      document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
 
       // document.querySelector(".mark").style.display = "flex";
     }, 10000);
