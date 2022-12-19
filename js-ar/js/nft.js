@@ -37,24 +37,17 @@ AFRAME.registerComponent("marker-handler", {
 
 // 事件处理
 AFRAME.registerComponent("event-handler", {
-  init: function () {
-    // let { sceneEl } = this.el;
-    // sceneEl.addEventListener("click", () => {
-    //   console.log("click");
-    // });
-    // sceneEl.addEventListener("touchstart", () => {
-    //   console.log("touchstart");
-    // });
-    // sceneEl.addEventListener("touchmove", () => {
-    //   console.log("touchmove");
-    // });
-    // sceneEl.addEventListener("touchend", () => {
-    //   console.log("touchend");
-    // });
-    // sceneEl.addEventListener("mousedown", () => {
-    //   console.log("mousedown");
-    // });
+  onClick: null,
+  onClickFun: function () {
+    console.log("onClick");
+  },
 
+  onTouchstart: null,
+  onTouchstartFun: function () {
+    console.log("onTouchstart");
+  },
+
+  init: function () {
     // const { el } = this;
     this.onClick = this.onClickFun.bind(this);
     this.onTouchstart = this.onTouchstartFun.bind(this);
@@ -66,18 +59,6 @@ AFRAME.registerComponent("event-handler", {
     // const { el } = this;
     this.el.removeEventListener("click", this.onClick);
     this.el.removeEventListener("touchstart", this.onTouchstart);
-  },
-
-  onClick: null,
-
-  onClickFun: function () {
-    console.log("onClick");
-  },
-
-  onTouchstart: null,
-
-  onTouchstartFun: function () {
-    console.log("onTouchstart");
   },
 });
 
