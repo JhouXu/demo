@@ -48,6 +48,12 @@
         el.addEventListener("click", this.onClick);
         el.addEventListener("touchstart", this.onTouchstart);
       },
+
+      remove: function () {
+        const { el } = this;
+        el.removeEventListener("click", this.onClick);
+        el.removeEventListener("touchstart", this.onTouchstart);
+      },
     });
   </script>
 
