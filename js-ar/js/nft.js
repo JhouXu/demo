@@ -59,7 +59,7 @@ AFRAME.registerComponent("event-handler", {
     this.onClick = this.onClickFun.bind(this);
     this.onTouchstart = this.onTouchstartFun.bind(this);
     this.el.addEventListener("click", this.onClick);
-    this.el.addEventListener("touchmove", this.onTouchstart);
+    this.el.addEventListener("touchstart", this.onTouchstart);
   },
 
   remove: function () {
