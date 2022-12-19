@@ -120,9 +120,9 @@ window.onload = function () {
 
       // 暂停动画播放
       animController(".entity", "isPlay");
-      // document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
+      document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
 
-      // document.querySelector(".mark").style.display = "flex";
+      document.querySelector(".mark").style.display = "flex";
     }, 10000);
   })();
 
