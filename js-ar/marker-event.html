@@ -30,6 +30,25 @@
         });
       },
     });
+
+    AFRAME.registerComponent("href", {
+      onClick: null,
+      onTouchstart: null,
+      onClickFun: function () {
+        console.log("click");
+      },
+      onTouchstartFun: function () {
+        console.log("touchstart");
+      },
+
+      init: function () {
+        const { el } = this;
+        this.onClick = this.onClickFun.bind(this);
+        this.onTouchstart = this.onTouchstartFun.bind(this);
+        el.addEventListener("click", this.onClick);
+        el.addEventListener("touchstart", this.onTouchstart);
+      },
+    });
   </script>
 
   <body style="margin: 0px; overflow: hidden">
