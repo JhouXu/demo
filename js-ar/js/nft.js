@@ -66,7 +66,9 @@ AFRAME.registerComponent("parent-handler", {
     const { el } = this;
     const entities = el.querySelectorAll(".entity");
 
-    console.log(entities);
+    for (let [item, key] of entities.entries()) {
+      console.log(item, key);
+    }
   },
 });
 
