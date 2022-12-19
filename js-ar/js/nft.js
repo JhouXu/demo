@@ -107,6 +107,7 @@ window.onload = function () {
 
   (() => {
     setTimeout(() => {
+      // 重置模型样式
       var sceneEl = document.querySelector("a-scene");
       var entity = sceneEl.querySelector("a-entity");
       entity.setAttribute("position", { x: 120, y: 0, z: -210 });
