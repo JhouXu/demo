@@ -117,7 +117,7 @@ window.onload = function () {
 
       document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
 
-      document.querySelector(".mark").style.display = "flex";
+      // document.querySelector(".mark").style.display = "flex";
     }, 10000);
   })();
 
