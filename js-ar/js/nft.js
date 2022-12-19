@@ -66,8 +66,23 @@ AFRAME.registerComponent("parent-handler", {
     const { el } = this;
     const entities = el.querySelectorAll(".entity");
 
-    for (let [item, key] of entities.entries()) {
-      console.log(item, key);
+    for (let [key, item] of entities.entries()) {
+      console.log(key, item);
+      item.addEventListener("click", () => {
+        console.log("entity event click");
+      });
+
+      item.addEventListener("touchstart", () => {
+        console.log("entity event touchstart");
+      });
+
+      item.addEventListener("touchmove", () => {
+        console.log("entity event touchmove");
+      });
+
+      item.addEventListener("touchend", () => {
+        console.log("entity event touchend");
+      });
     }
   },
 });
