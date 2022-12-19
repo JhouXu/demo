@@ -1,3 +1,5 @@
+const { ConsoleLogger } = require("signalr-uni/dist/esm/Utils");
+
 window.isPlay = false;
 
 // aframe 绑定处理程序
@@ -40,25 +42,31 @@ AFRAME.registerComponent("event-handler", {
   init: function () {
     let { sceneEl } = this.el;
 
-    sceneEl.addEventListener("click", () => {
-      console.log("click");
-    });
+    // sceneEl.addEventListener("click", () => {
+    //   console.log("click");
+    // });
 
-    sceneEl.addEventListener("touchstart", () => {
-      console.log("touchstart");
-    });
+    // sceneEl.addEventListener("touchstart", () => {
+    //   console.log("touchstart");
+    // });
 
-    sceneEl.addEventListener("touchmove", () => {
-      console.log("touchmove");
-    });
+    // sceneEl.addEventListener("touchmove", () => {
+    //   console.log("touchmove");
+    // });
 
-    sceneEl.addEventListener("touchend", () => {
-      console.log("touchend");
-    });
+    // sceneEl.addEventListener("touchend", () => {
+    //   console.log("touchend");
+    // });
 
-    sceneEl.addEventListener("mousedown", () => {
-      console.log("mousedown");
-    });
+    // sceneEl.addEventListener("mousedown", () => {
+    //   console.log("mousedown");
+    // });
+  },
+
+  boundClickHandler: undefined,
+
+  clickHandler: function hrefClickHandler() {
+    console.log("clickHandler");
   },
 });
 
