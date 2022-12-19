@@ -110,7 +110,7 @@ window.onload = function () {
     alert("open camera");
   });
 
-  document.querySelector("#play-pause-handler").addEventListener("click", (e) => animController(".e-entity", "isPlay"));
+  document.querySelector("#play-pause-handler").addEventListener("click", (e) => animController(".entity", "isPlay"));
 
   document.querySelector("#get-position").addEventListener("click", (e) => {
     getPosition()
@@ -134,7 +134,7 @@ window.onload = function () {
       console.log("重置样式");
 
       // 暂停动画播放
-      animController(".e-entity", "isPlay");
+      animController(".entity", "isPlay");
       // document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
 
       // document.querySelector(".mark").style.display = "flex";
