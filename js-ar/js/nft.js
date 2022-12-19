@@ -35,6 +35,7 @@ AFRAME.registerComponent("marker-handler", {
   },
 });
 
+// 事件处理
 AFRAME.registerComponent("event-handler", {
   init: function () {
     let { sceneEl } = this.el;
@@ -61,6 +62,7 @@ AFRAME.registerComponent("event-handler", {
   },
 });
 
+// 子辈事件处理
 AFRAME.registerComponent("parent-handler", {
   init: function () {
     const { el } = this;
