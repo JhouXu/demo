@@ -1,5 +1,3 @@
-const { ConsoleLogger } = require("signalr-uni/dist/esm/Utils");
-
 window.isPlay = false;
 
 // aframe 绑定处理程序
@@ -136,8 +134,8 @@ window.onload = function () {
       console.log("重置样式");
 
       // 暂停动画播放
-      // animController(".e-entity", "isPlay");
-      document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
+      animController(".e-entity", "isPlay");
+      // document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
 
       // document.querySelector(".mark").style.display = "flex";
     }, 10000);
