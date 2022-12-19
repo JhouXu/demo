@@ -114,7 +114,7 @@ window.onload = function () {
       var entity = sceneEl.querySelector("a-entity");
       entity.setAttribute("position", { x: 120, y: 0, z: -210 });
       entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
-      entity.setAttribute("scale", { x: 100, y: 100, z: 100 });
+      entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
 
       console.log("重置样式");
 
