@@ -56,8 +56,7 @@ AFRAME.registerComponent("event-handler", {
     // });
 
     const { el } = this;
-    this.onClick = this.onClick.bind(this);
-    this.onTouchstart = this.onTouchstart.bind(this);
+
     el.addEventListener("click", this.onClick);
     el.addEventListener("touchmove", this.onTouchstart);
   },
