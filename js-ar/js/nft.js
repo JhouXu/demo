@@ -55,16 +55,15 @@ AFRAME.registerComponent("event-handler", {
     //   console.log("mousedown");
     // });
 
-    const { el } = this;
-
-    el.addEventListener("click", this.onClick);
-    el.addEventListener("touchmove", this.onTouchstart);
+    // const { el } = this;
+    this.el.addEventListener("click", this.onClick);
+    this.el.addEventListener("touchmove", this.onTouchstart);
   },
 
   remove: function () {
-    const { el } = this;
-    el.removeEventListener("click", this.onClick);
-    el.removeEventListener("touchstart", this.onTouchstart);
+    // const { el } = this;
+    this.el.removeEventListener("click", this.onClick);
+    this.el.removeEventListener("touchstart", this.onTouchstart);
   },
 
   onClick: function () {
