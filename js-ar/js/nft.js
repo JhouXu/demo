@@ -56,6 +56,8 @@ AFRAME.registerComponent("event-handler", {
     // });
 
     // const { el } = this;
+    this.onClick = this.onClickFun.bind(this);
+    this.onTouchstart = this.onTouchstartFun.bind(this);
     this.el.addEventListener("click", this.onClick);
     this.el.addEventListener("touchmove", this.onTouchstart);
   },
@@ -66,11 +68,15 @@ AFRAME.registerComponent("event-handler", {
     this.el.removeEventListener("touchstart", this.onTouchstart);
   },
 
-  onClick: function () {
+  onClick: null,
+
+  onClickFun: function () {
     console.log("onClick");
   },
 
-  onTouchstart: function () {
+  onTouchstart: null,
+
+  onTouchstartFun: function () {
     console.log("onTouchstart");
   },
 });
