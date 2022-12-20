@@ -35,51 +35,52 @@
         </div>
 
         <!-- scene -->
-        <div class="main-container_scene main-container_item">
-          <a-scene
-            arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
-            embedded
-            renderer="logarithmicDepthBuffer: true;"
-            vr-mode-ui="enabled: false"
-            id="scene"
-            gesture-detector
-          >
-            <a-assets>
-              <img
-                id="logo"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
-                crossorigin="anonymous"
-              />
-            </a-assets>
+        <!-- <div class="main-container_scene main-container_item"> -->
+        <a-scene
+          class="main-container_scene main-container_item"
+          arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+          embedded
+          renderer="logarithmicDepthBuffer: true;"
+          vr-mode-ui="enabled: false"
+          id="scene"
+          gesture-detector
+        >
+          <a-assets>
+            <img
+              id="logo"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
+              crossorigin="anonymous"
+            />
+          </a-assets>
 
-            <a-nft
-              class="animation-marker"
-              type="nft"
-              url="https://jhouxu.github.io/demo/js-ar/nft/sculling"
-              smooth="true"
-              smoothCount="10"
-              smoothTolerance=".01"
-              smoothThreshold="5"
-              cursor="rayOrigin: mouse"
-              raycaster="objects: .entity"
-              marker-handler
+          <a-nft
+            class="animation-marker"
+            type="nft"
+            url="https://jhouxu.github.io/demo/js-ar/nft/sculling"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+            cursor="rayOrigin: mouse"
+            raycaster="objects: .entity"
+            marker-handler
+          >
+            <a-entity
+              class="entity"
+              id="animation-model"
+              gltf-model="./glb/CesiumMan.gltf"
+              position="120 0 -210"
+              rotation="-90 0 0"
+              scale="100 100 100"
+              material="opacity: 1;"
+              gesture-handler="minScale: 0.25; maxScale: 2"
+              event-handler
             >
-              <a-entity
-                class="entity"
-                id="animation-model"
-                gltf-model="./glb/CesiumMan.gltf"
-                position="120 0 -210"
-                rotation="-90 0 0"
-                scale="100 100 100"
-                material="opacity: 1;"
-                gesture-handler="minScale: 0.25; maxScale: 2"
-                event-handler
-              >
-              </a-entity>
-            </a-nft>
-            <a-entity camera="fov: 190"> </a-entity>
-          </a-scene>
-        </div>
+            </a-entity>
+          </a-nft>
+          <a-entity camera="fov: 190"> </a-entity>
+        </a-scene>
+        <!-- </div> -->
 
         <!-- mark -->
         <!-- <div class="main-container_mark main-container_item"></div> -->
