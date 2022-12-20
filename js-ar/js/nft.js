@@ -9,6 +9,8 @@ AFRAME.registerComponent("marker-handler", {
 
     // 图像出现在视野时，播放模型骨骼动画
     sceneEl.addEventListener("markerFound", (evt) => {
+      console.log("markerFound");
+
       setTimeout(() => {
         dom.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
         isPlay = true;
@@ -17,6 +19,8 @@ AFRAME.registerComponent("marker-handler", {
 
     // 图像消失在视野时，暂停模型骨骼动画
     sceneEl.addEventListener("markerLost", () => {
+      console.log("markerLost");
+
       setTimeout(() => dom.setAttribute("animation-mixer", { timeScale: 0 }), 500);
       isPlay = false;
     });
