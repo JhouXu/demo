@@ -148,6 +148,14 @@ window.onload = function () {
       console.log("click icon");
     });
   })();
+
+  const Assets = document.querySelector("#assets");
+  Assets.addEventListener("loaded", (e) => {
+    console.log(e);
+  });
+  Assets.addEventListener("timeout", (e) => {
+    console.log(e);
+  });
 };
 
 function animController(domStr, storeName) {
