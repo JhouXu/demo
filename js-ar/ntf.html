@@ -172,37 +172,6 @@
         </a-entity>
       </a-nft>
 
-      <!-- haibao -->
-      <a-nft
-        class="animation-marker"
-        type="nft"
-        url="https://jhouxu.github.io/demo/js-ar/nft/haibao"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-        cursor="rayOrigin: mouse"
-        raycaster="objects: .entity"
-        marker-handler
-      >
-        <!-- <a-image src="#logo" width="1000" height="1000" position="1 1 1" rotation="90 0 0"></a-image> -->
-
-        <!-- <a-box color="tomato" position="0 0 0" depth="10" height="10" width="10" event-handler></a-box> -->
-
-        <!-- 展示模型的路径 -->
-        <a-entity
-          class="entity"
-          id="animation-model"
-          gltf-model="./glb/CesiumMan.gltf"
-          position="120 0 -210"
-          rotation="-90 0 0"
-          scale="100 100 100"
-          material="opacity: 1;"
-          gesture-handler="minScale: 0.25; maxScale: 2"
-          event-handler
-        >
-        </a-entity>
-      </a-nft>
       <!-- static camera that moves according to the device movemenents -->
       <a-entity camera="fov: 190"> </a-entity>
     </a-scene>
