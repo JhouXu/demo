@@ -113,20 +113,20 @@ window.onload = function () {
 
   (() => {
     setTimeout(() => {
-      // 重置模型样式
-      var sceneEl = document.querySelector("a-scene");
-      var entity = sceneEl.querySelector("a-entity");
-      entity.setAttribute("position", { x: 120, y: 0, z: -210 });
-      entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
-      entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
-
       console.log("重置样式");
 
-      // 暂停动画播放
-      animController(".entity", "isPlay");
-      document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
+      // // 重置模型样式
+      // var sceneEl = document.querySelector("a-scene");
+      // var entity = sceneEl.querySelector("a-entity");
+      // entity.setAttribute("position", { x: 120, y: 0, z: -210 });
+      // entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
+      // entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
 
-      document.querySelector(".mark").style.display = "flex";
+      // // 暂停动画播放
+      // animController(".entity", "isPlay");
+      // document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
+
+      // document.querySelector(".mark").style.display = "flex";
     }, 10000);
   })();
 
