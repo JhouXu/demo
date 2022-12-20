@@ -131,15 +131,21 @@ window.onload = function () {
   })();
 
   (() => {
-    const MarkHead = document.querySelector(".mark .head img");
+    const MarkLogo = document.querySelector(".mark .logo img");
     const MarkBody = document.querySelector(".mark .body img");
+    const MarkIcon = document.querySelector(".mark .icon img");
 
-    MarkHead.addEventListener("click", () => {
-      alert("click head");
+    MarkLogo.addEventListener("click", () => {
+      console.log("click logo, window open website");
+      window.open("https://www.yili.com/cms/rest/reception/products/show?id=15");
     });
 
     MarkBody.addEventListener("click", () => {
-      alert("click body");
+      console.log("click body");
+    });
+
+    MarkIcon.addEventListener("click", () => {
+      console.log("click icon");
     });
   })();
 };

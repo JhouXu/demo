@@ -18,7 +18,7 @@
 
       .arjs-loader {
         width: 100%;
-        height: 60%;
+        height: 20%;
         position: absolute;
         top: 0;
         left: 0;
@@ -71,7 +71,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        display: none;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -82,7 +82,21 @@
       }
 
       .mark .container {
-        transform: translateY(-10%) scale(0.5);
+        transform: translateY(-10%) scale(2);
+      }
+
+      .mark .logo,
+      .mark .body,
+      .mark .icon {
+        text-align: center;
+      }
+
+      .mark .logo img {
+        transform: translateX(-30%);
+      }
+
+      .mark .icon img {
+        transform: translate3d(55%, -310%, 0);
       }
     </style>
 
@@ -129,7 +143,7 @@
       <a-nft
         class="animation-marker"
         type="nft"
-        url="https://jhouxu.github.io/demo/js-ar/nft/shuhua"
+        url="https://jhouxu.github.io/demo/js-ar/nft/haibao"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
@@ -162,11 +176,14 @@
 
     <div class="mark">
       <div class="container">
-        <div class="head">
-          <img src="./images/mark-head.png" />
+        <div class="logo">
+          <img src="./images/mark-logo.png" />
         </div>
         <div class="body">
           <img src="./images/mark-body.png" />
+        </div>
+        <div class="icon">
+          <img src="./images/mark-icon.png" />
         </div>
       </div>
     </div>
