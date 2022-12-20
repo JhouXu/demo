@@ -134,6 +134,9 @@
       <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
 
       <a-assets>
+        <a-asset-item id="CesiumMan" src="./glb/CesiumMan.gltf"></a-asset-item>
+        <a-asset-item id="Astronaut" src="./glb/Astronaut.glb"></a-asset-item>
+        <a-asset-item id="QQ" src="./glb/qq.glb"></a-asset-item>
         <img
           id="logo"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
@@ -161,7 +164,7 @@
         <a-entity
           class="entity"
           id="animation-model"
-          gltf-model="./glb/CesiumMan.gltf"
+          src="#CesiumMan"
           position="120 0 -210"
           rotation="-90 0 0"
           scale="100 100 100"
@@ -188,7 +191,7 @@
         <a-entity
           class="entity"
           id="animation-model"
-          gltf-model="./glb/Astronaut.glb"
+          src="#Astronaut"
           position="120 0 -210"
           rotation="-90 0 0"
           scale="100 100 100"
@@ -215,7 +218,7 @@
         <a-entity
           class="entity"
           id="animation-model"
-          gltf-model="./glb/qq.glb"
+          src="#QQ"
           position="120 0 -210"
           rotation="-90 0 0"
           scale="100 100 100"
