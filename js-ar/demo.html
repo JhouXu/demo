@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cn-ZH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AR 技术结合探索</title>
+    <link rel="stylesheet" href="./css/demo.css" />
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-master.min.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-ar-nft.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-extras-v6.1.0.js"></script>
+    <script src="https://fcor.github.io/arjs-gestures/gesture-detector.js"></script>
+    <script src="https://fcor.github.io/arjs-gestures/gesture-handler.js"></script>
+
+    <script src="https://jhouxu.github.io/demo/js-ar/js/getPosition.js"></script>
+    <script type="module" src="./js/demo.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <div class="main">
+      <div class="main-container">
+        <!-- 仅作占位盒子，不做内容显示作用 -->
+        <div class="main-container_occupy"></div>
+
+        <!-- loader -->
+        <div class="main-container_loader main-container_item arjs-loader">
+          <div class="spinner-box">
+            <div class="configure-border-1">
+              <div class="configure-core"></div>
+            </div>
+            <div class="configure-border-2">
+              <div class="configure-core"></div>
+            </div>
+          </div>
+          <div>正在加载AR模型，请稍等...</div>
+        </div>
+
+        <!-- scene -->
+        <div class="main-container_scene main-container_item">
+          <a-scene
+            arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+            embedded
+            renderer="logarithmicDepthBuffer: true;"
+            vr-mode-ui="enabled: false"
+            id="scene"
+            gesture-detector
+          >
+            <a-assets>
+              <img
+                id="logo"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
+                crossorigin="anonymous"
+              />
+            </a-assets>
+
+            <a-nft
+              class="animation-marker"
+              type="nft"
+              url="https://jhouxu.github.io/demo/js-ar/nft/sculling"
+              smooth="true"
+              smoothCount="10"
+              smoothTolerance=".01"
+              smoothThreshold="5"
+              cursor="rayOrigin: mouse"
+              raycaster="objects: .entity"
+              marker-handler
+            >
+              <a-entity
+                class="entity"
+                id="animation-model"
+                gltf-model="./glb/CesiumMan.gltf"
+                position="120 0 -210"
+                rotation="-90 0 0"
+                scale="100 100 100"
+                material="opacity: 1;"
+                gesture-handler="minScale: 0.25; maxScale: 2"
+                event-handler
+              >
+              </a-entity>
+            </a-nft>
+            <a-entity camera="fov: 190"> </a-entity>
+          </a-scene>
+        </div>
+
+        <!-- mark -->
+        <!-- <div class="main-container_mark main-container_item"></div> -->
+      </div>
+    </div>
+  </body>
+</html>
