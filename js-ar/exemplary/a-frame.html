@@ -40,10 +40,14 @@
         <a-assets-item id="robot" src="../glb/BrainStem.glb"></a-assets-item>
         <a-assets-item id="ship" src="../glb/ship.glb"></a-assets-item>
         <a-assets-item id="man" src="../glb/CesiumMan.gltf"></a-assets-item>
+
+        <a-asset-item id="StickMan" src="../glb/StickMan.glb"></a-asset-item>
+        <a-asset-item id="Astronaut" src="../glb/Astronaut.glb"></a-asset-item>
+        <a-asset-item id="QQ" src="../glb/qq.glb"></a-asset-item>
       </a-assets>
 
       <!-- 渲染机器人 -->
-      <a-entity id="render-robot">
+      <!-- <a-entity id="render-robot">
         <a-entity
           event
           id="man"
@@ -54,9 +58,39 @@
           scale="3 3 3"
         >
         </a-entity>
+      </a-entity> -->
+
+      <a-entity
+        event
+        gltf-model="#StickMan"
+        shadow="cast: true; receive: false"
+        position="0.8 2 -1"
+        rotation="0 -35 0"
+        scale="0.02 0.02 0.02"
+      >
       </a-entity>
 
-      <a-box event id="yellow" color="yellow" position="0 1 -3" rotation="45 0 0" class="item yellow"></a-box>
+      <a-entity
+        event
+        gltf-model="#Astronaut"
+        shadow="cast: true; receive: false"
+        position="0 0 -3"
+        rotation="0 0 0"
+        scale="35 35 35"
+      >
+      </a-entity>
+
+      <a-entity
+        event
+        gltf-model="#QQ"
+        shadow="cast: true; receive: false"
+        position="-2 0 -3"
+        rotation="0 20 0"
+        scale="35 35 35"
+      >
+      </a-entity>
+
+      <!-- <a-box event id="yellow" color="yellow" position="0 1 -3" rotation="45 0 0" class="item yellow"></a-box> -->
 
       <!-- 渲染飞船 -->
       <!-- <a-entity id="render-ship">
