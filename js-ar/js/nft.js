@@ -1,4 +1,5 @@
 window.isPlay = false;
+window.isFirst = true;
 
 // aframe 绑定处理程序
 AFRAME.registerComponent("marker-handler", {
@@ -10,6 +11,11 @@ AFRAME.registerComponent("marker-handler", {
     // 图像出现在视野时，播放模型骨骼动画
     sceneEl.addEventListener("markerFound", (evt) => {
       console.log("markerFound");
+
+      if (window.isFirst) {
+        ResetModel();
+        window.isFirst = false;
+      }
 
       setTimeout(() => {
         dom.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
@@ -111,24 +117,24 @@ window.onload = function () {
       });
   });
 
-  (() => {
-    setTimeout(() => {
-      console.log("重置样式");
+  // (() => {
+  //   setTimeout(() => {
+  //     console.log("重置样式");
 
-      // // 重置模型样式
-      // var sceneEl = document.querySelector("a-scene");
-      // var entity = sceneEl.querySelector("a-entity");
-      // entity.setAttribute("position", { x: 120, y: 0, z: -210 });
-      // entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
-      // entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
+  //     // // 重置模型样式
+  //     // var sceneEl = document.querySelector("a-scene");
+  //     // var entity = sceneEl.querySelector("a-entity");
+  //     // entity.setAttribute("position", { x: 120, y: 0, z: -210 });
+  //     // entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
+  //     // entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
 
-      // // 暂停动画播放
-      // animController(".entity", "isPlay");
-      // document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
+  //     // // 暂停动画播放
+  //     // animController(".entity", "isPlay");
+  //     // document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
 
-      // document.querySelector(".mark").style.display = "flex";
-    }, 10000);
-  })();
+  //     // document.querySelector(".mark").style.display = "flex";
+  //   }, 10000);
+  // })();
 
   (() => {
     const MarkLogo = document.querySelector(".mark .logo img");
@@ -168,4 +174,20 @@ function animController(domStr, storeName) {
     window[storeName] = true;
     document.querySelector(domStr).setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
   }
+}
+
+function ResetModel() {
+  // 定时，重置模型位置
+  setTimeout(() => {
+    console.log("重置样式");
+    // var sceneEl = document.querySelector("a-scene");
+    // var entity = sceneEl.querySelector("a-entity");
+    // entity.setAttribute("position", { x: 120, y: 0, z: -210 });
+    // entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
+    // entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
+    // // 暂停动画播放
+    // animController(".entity", "isPlay");
+    // document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
+    // document.querySelector(".mark").style.display = "flex";
+  }, 10000);
 }
