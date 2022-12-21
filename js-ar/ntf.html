@@ -139,6 +139,7 @@
       <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
 
       <a-assets id="assets">
+        <a-asset-item id="StickMan" src="./glb/StickMan.glb"></a-asset-item>
         <a-asset-item id="CesiumMan" src="./glb/CesiumMan.gltf"></a-asset-item>
         <a-asset-item id="Astronaut" src="./glb/Astronaut.glb"></a-asset-item>
         <a-asset-item id="QQ" src="./glb/qq.glb"></a-asset-item>
@@ -165,11 +166,11 @@
 
         <!-- <a-box color="tomato" position="0 0 0" depth="10" height="10" width="10" event-handler></a-box> -->
 
-        <!-- 展示模型的路径 -->
+        <!-- 火柴人 -->
         <a-entity
           class="entity"
           id="animation-model"
-          gltf-model="#CesiumMan"
+          gltf-model="#StickMan"
           position="120 0 -210"
           rotation="-90 0 0"
           scale="100 100 100"
@@ -179,6 +180,7 @@
         >
         </a-entity>
 
+        <!-- 宇航员 -->
         <a-entity
           class="entity"
           id="animation-model"
@@ -192,6 +194,7 @@
         >
         </a-entity>
 
+        <!-- 企鹅 -->
         <a-entity
           class="entity"
           id="animation-model"
