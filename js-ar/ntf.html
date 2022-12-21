@@ -139,6 +139,7 @@
       <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
 
       <a-assets id="assets">
+        <a-asset-item id="CesiumMan" src="./glb/CesiumMan.gltf"></a-asset-item>
         <a-asset-item id="StickMan" src="./glb/StickMan.glb"></a-asset-item>
         <a-asset-item id="Astronaut" src="./glb/Astronaut.glb"></a-asset-item>
         <a-asset-item id="QQ" src="./glb/qq.glb"></a-asset-item>
@@ -161,9 +162,19 @@
         raycaster="objects: .entity"
         marker-handler
       >
-        <!-- <a-image src="#logo" width="1000" height="1000" position="1 1 1" rotation="90 0 0"></a-image> -->
-
-        <!-- <a-box color="tomato" position="0 0 0" depth="10" height="10" width="10" event-handler></a-box> -->
+        <!-- 小人 -->
+        <a-entity
+          class="entity"
+          id="animation-model"
+          gltf-model="#CesiumMan"
+          position="120 0 -210"
+          rotation="-90 0 0"
+          scale="100 100 100"
+          material="opacity: 1;"
+          gesture-handler="minScale: 0.25; maxScale: 2"
+          event-handler
+        >
+        </a-entity>
 
         <!-- 火柴人 -->
         <a-entity
@@ -174,6 +185,7 @@
           scale="0.02 0.02 0.02"
           material="opacity: 1;"
           gesture-handler="minScale: 0.25; maxScale: 2"
+          id="animation-model"
           class="entity"
           event-handler
         >
@@ -188,6 +200,7 @@
           scale="35 35 35"
           material="opacity: 1;"
           gesture-handler="minScale: 0.25; maxScale: 2"
+          id="animation-model"
           class="entity"
           event-handler
         >
@@ -202,6 +215,7 @@
           scale="35 35 35"
           material="opacity: 1;"
           gesture-handler="minScale: 0.25; maxScale: 2"
+          id="animation-model"
           class="entity"
           event-handler
         >
