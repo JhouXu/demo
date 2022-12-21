@@ -37,6 +37,7 @@
   <body>
     <a-scene renderer="colorManagement: true;" cursor="rayOrigin: mouse;" environment>
       <a-assets timeout="30000">
+        <a-asset-item id="CesiumMan" src="../glb/CesiumMan.gltf"></a-asset-item>
         <a-assets-item id="robot" src="../glb/BrainStem.glb"></a-assets-item>
         <a-assets-item id="ship" src="../glb/ship.glb"></a-assets-item>
         <a-assets-item id="man" src="../glb/CesiumMan.gltf"></a-assets-item>
@@ -59,6 +60,19 @@
         >
         </a-entity>
       </a-entity> -->
+
+      <a-entity
+        class="entity"
+        id="animation-model"
+        gltf-model="#CesiumMan"
+        position="120 0 -210"
+        rotation="-90 0 0"
+        scale="100 100 100"
+        material="opacity: 1;"
+        gesture-handler="minScale: 0.25; maxScale: 2"
+        event-handler
+      >
+      </a-entity>
 
       <a-entity
         event
