@@ -139,10 +139,9 @@
       <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
 
       <a-assets id="assets">
-        <a-asset-item id="StickMan" src="./glb/StickMan.glb"></a-asset-item>
-        <a-asset-item id="CesiumMan" src="./glb/CesiumMan.gltf"></a-asset-item>
-        <a-asset-item id="Astronaut" src="./glb/Astronaut.glb"></a-asset-item>
-        <a-asset-item id="QQ" src="./glb/qq.glb"></a-asset-item>
+        <a-asset-item id="StickMan" src="../glb/StickMan.glb"></a-asset-item>
+        <a-asset-item id="Astronaut" src="../glb/Astronaut.glb"></a-asset-item>
+        <a-asset-item id="QQ" src="../glb/qq.glb"></a-asset-item>
         <img
           id="logo"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
@@ -168,42 +167,42 @@
 
         <!-- 火柴人 -->
         <a-entity
-          class="entity"
-          id="animation-model"
           gltf-model="#StickMan"
-          position="120 0 -210"
-          rotation="-90 0 0"
-          scale="100 100 100"
+          shadow="cast: true; receive: false"
+          position="0.8 2 -1"
+          rotation="0 -35 0"
+          scale="0.02 0.02 0.02"
           material="opacity: 1;"
           gesture-handler="minScale: 0.25; maxScale: 2"
+          class="entity"
           event-handler
         >
         </a-entity>
 
         <!-- 宇航员 -->
         <a-entity
-          class="entity"
-          id="animation-model"
           gltf-model="#Astronaut"
-          position="0 0 0"
+          shadow="cast: true; receive: false"
+          position="0 0 -3"
           rotation="0 0 0"
-          scale="100 100 100"
+          scale="35 35 35"
           material="opacity: 1;"
           gesture-handler="minScale: 0.25; maxScale: 2"
+          class="entity"
           event-handler
         >
         </a-entity>
 
         <!-- 企鹅 -->
         <a-entity
-          class="entity"
-          id="animation-model"
           gltf-model="#QQ"
-          position="0 0 0"
-          rotation="0 0 0"
-          scale="100 100 100"
+          shadow="cast: true; receive: false"
+          position="-2 0 -3"
+          rotation="0 20 0"
+          scale="35 35 35"
           material="opacity: 1;"
           gesture-handler="minScale: 0.25; maxScale: 2"
+          class="entity"
           event-handler
         >
         </a-entity>
