@@ -32,6 +32,26 @@
           console.log(evt);
         },
       });
+
+      AFRAME.registerComponent("event-img", {
+        schema: { type: "string" },
+
+        init: function () {
+          const { el } = this;
+
+          this.onClick = this.onClick.bind(this);
+          el.addEventListener("click", this.onClick);
+        },
+
+        remove: function () {
+          const { el } = this;
+          el.removeEventListener("click", this.onClick);
+        },
+
+        onClick: function (evt) {
+          console.log(`click: ${this.data}`);
+        },
+      });
     </script>
   </head>
   <body>
@@ -106,7 +126,13 @@
       >
       </a-entity>
 
-      <a-image src="#img-dinosaur" position="0 5 -10" scale="12 9 0"></a-image>
+      <a-image
+        src="#img-dinosaur"
+        position="0 5 -10"
+        scale="12 9 0"
+        event-img="img-dinosaur"
+        id="img-dinosaur"
+      ></a-image>
 
       <!-- <a-box event id="yellow" color="yellow" position="0 1 -3" rotation="45 0 0" class="item yellow"></a-box> -->
 
