@@ -23,11 +23,11 @@
 
       .arjs-loader {
         width: 100%;
-        height: 20%;
+        height: 100%;
         position: absolute;
         top: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.4);
         z-index: 9999;
         display: flex;
         justify-content: center;
@@ -105,18 +105,18 @@
       }
     </style>
 
-    <script src="./utils/aframe-master.min.js"></script>
-    <script src="./utils/aframe-ar-nft.js"></script>
-    <script src="./utils/aframe-extras-v6.1.0.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-master.min.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-ar-nft.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/aframe-extras-v6.1.0.js"></script>
 
     <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
     <!-- https://fcor.github.io/arjs-gestures -->
     <!-- <script src="./utils/gesture.js"></script> -->
-    <script src="./utils/gesture-detector.js"></script>
-    <script src="./utils/gesture-handler.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/gesture-detector.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/utils/gesture-handler.js"></script>
 
-    <script src="./js/getPosition.js"></script>
-    <script src="./js/nft.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/js/getPosition.js"></script>
+    <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden">
     <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
@@ -138,10 +138,10 @@
       <!-- https://carnaux.github.io/NFT-Marker-Creator/#/ -->
 
       <a-assets id="assets">
-        <a-asset-item id="CesiumMan" src="./glb/CesiumMan.gltf"></a-asset-item>
-        <a-asset-item id="StickMan" src="./glb/StickMan.glb"></a-asset-item>
-        <a-asset-item id="Astronaut" src="./glb/Astronaut.glb"></a-asset-item>
-        <a-asset-item id="QQ" src="./glb/qq.glb"></a-asset-item>
+        <a-asset-item id="CesiumMan" src="https://jhouxu.github.io/demo/js-ar/glb/CesiumMan.gltf"></a-asset-item>
+        <!-- <a-asset-item id="StickMan" src="https://jhouxu.github.io/demo/js-ar/glb/StickMan.glb"></a-asset-item> -->
+        <!-- <a-asset-item id="Astronaut" src="https://jhouxu.github.io/demo/js-ar/glb/Astronaut.glb"></a-asset-item> -->
+        <!-- <a-asset-item id="QQ" src="https://jhouxu.github.io/demo/js-ar/glb/qq.glb"></a-asset-item> -->
         <!-- <img
           id="logo"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
@@ -242,7 +242,7 @@
     <!-- <button id="get-animation">e-entity event animation</button> -->
   </body>
   <!-- <script src="https://cdn.bootcdn.net/ajax/libs/eruda/1.6.0/eruda.js"></script> -->
-  <script src="./utils/eruda.js"></script>
+  <script src="https://jhouxu.github.io/demo/js-ar/utils/eruda.js"></script>
   <script>
     eruda.init();
   </script>
