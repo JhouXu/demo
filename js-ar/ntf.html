@@ -116,7 +116,7 @@
     <script src="https://jhouxu.github.io/demo/js-ar/utils/gesture-handler.js"></script>
 
     <script src="https://jhouxu.github.io/demo/js-ar/js/getPosition.js"></script>
-    <script src="https://jhouxu.github.io/demo/js-ar/js/nft.js"></script>
+    <script src="./js/nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden">
     <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
@@ -139,9 +139,11 @@
 
       <a-assets id="assets">
         <a-asset-item id="CesiumMan" src="https://jhouxu.github.io/demo/js-ar/glb/CesiumMan.gltf"></a-asset-item>
-        <a-asset-item id="StickMan" src="https://jhouxu.github.io/demo/js-ar/glb/StickMan.glb"></a-asset-item>
+        <a-asset-item id="QQ" src="https://jhouxu.github.io/demo/js-ar/glb/qq.glb"></a-asset-item>
+        <a-asset-item id="BrainStem" src="https://jhouxu.github.io/demo/js-ar/glb/BrainStem.glb"></a-asset-item>
         <a-asset-item id="Astronaut" src="https://jhouxu.github.io/demo/js-ar/glb/Astronaut.glb"></a-asset-item>
         <a-asset-item id="QQ" src="https://jhouxu.github.io/demo/js-ar/glb/qq.glb"></a-asset-item>
+
         <!-- <img
           id="logo"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfoLeHdGoBbPdek405DJnZ1L9mbxOrixMoYg&usqp=CAU"
@@ -161,12 +163,12 @@
         raycaster="objects: .entity"
         marker-handler
       >
-        <!-- 小人 -->
+        <!-- 小人 一-->
         <a-entity
           class="entity"
           id="animation-model"
           gltf-model="#CesiumMan"
-          position="50 40 0"
+          position="0 -150 0"
           rotation="-90 0 0"
           scale="50 50 50"
           material="opacity: 1;"
@@ -175,47 +177,40 @@
         >
         </a-entity>
 
-        <!-- 火柴人 -->
+        <!-- 小人二 -->
         <a-entity
           class="entity"
           id="animation-model"
-          gltf-model="#StickMan"
-          position="80 50 0"
-          rotation="0 0 0"
-          scale="0.7 0.7 0.7"
+          gltf-model="#CesiumMan"
+          position="-40 -150 0"
+          rotation="-90 0 0"
+          scale="50 50 50"
           material="opacity: 1;"
           gesture-handler="minScale: 0.25; maxScale: 2"
           event-handler
         >
         </a-entity>
 
-        <!-- 宇航员 -->
+        <!-- 机器人 -->
         <a-entity
           class="entity"
-          id="animation-model"
-          gltf-model="#Astronaut"
+          gltf-model="#BrainStem"
           position="0 0 0"
           rotation="0 0 0"
-          scale="1000 8 8"
-          material="opacity: 1;"
+          scale="10 10 10"
           gesture-handler="minScale: 0.25; maxScale: 2"
           event-handler
         >
         </a-entity>
 
+        <!-- 火柴人 -->
+        <a-entity gltf-model="#StickMan" position="0 0 0" rotation="0 0 0" scale="10 10 10"> </a-entity>
+
+        <!-- 宇航员 -->
+        <a-entity gltf-model="#Astronaut" position="0 0 -100" rotation="0 0 0" scale="100 100 100"> </a-entity>
+
         <!-- 企鹅 -->
-        <a-entity
-          class="entity"
-          id="animation-model"
-          gltf-model="#QQ"
-          position="100 50 0"
-          rotation="0 0 0"
-          scale="1 1 1"
-          material="opacity: 1;"
-          gesture-handler="minScale: 0.25; maxScale: 2"
-          event-handler
-        >
-        </a-entity>
+        <a-entity gltf-model="#QQ" position="0 0 -100" rotation="0 0 0" scale="100 100 100"> </a-entity>
       </a-nft>
 
       <!-- static camera that moves according to the device movemenents -->
