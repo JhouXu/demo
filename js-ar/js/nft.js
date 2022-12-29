@@ -173,11 +173,15 @@ function animController(domStr, storeName) {
   if (window[storeName]) {
     // 暂停
     window[storeName] = false;
-    document.querySelector(domStr).setAttribute("animation-mixer", { timeScale: 0 });
+    for (let d of document.querySelectorAll(domStr)) {
+      d.setAttribute("animation-mixer", { timeScale: 0 });
+    }
   } else {
     // 播放
     window[storeName] = true;
-    document.querySelector(domStr).setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
+    for (let d of document.querySelectorAll(domStr)) {
+      d.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
+    }
   }
 }
 
