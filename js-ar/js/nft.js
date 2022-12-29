@@ -2,13 +2,14 @@ window.isPlay = false;
 window.isFirst = true;
 
 // aframe 绑定处理程序
+// 监听 markerFound、markerLost 事件
 AFRAME.registerComponent("marker-handler", {
   init: function () {
     let { sceneEl } = this.el; // this.el === <a-nft></a-nft>>
-    let dom = document.querySelector(".entity"); // dom === <a-entity></a-entity>
-    this.dom = dom;
+    let doms = document.querySelectorAll(".e-entity"); // dom === <a-entity></a-entity>
+    this.doms = doms;
 
-    // 图像出现在视野时，播放模型骨骼动画
+    // 图像出现在视野时
     sceneEl.addEventListener("markerFound", (evt) => {
       console.log("markerFound");
 
@@ -18,17 +19,21 @@ AFRAME.registerComponent("marker-handler", {
       }
 
       setTimeout(() => {
-        dom.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
+        // 播放模型骨骼动画
+        for (let d of doms) d.setAttribute("animation-mixer", { timeScale: 1, loop: "repeat" });
         isPlay = true;
       }, 500);
     });
 
-    // 图像消失在视野时，暂停模型骨骼动画
+    // 图像消失在视野时
     sceneEl.addEventListener("markerLost", () => {
       console.log("markerLost");
 
-      setTimeout(() => dom.setAttribute("animation-mixer", { timeScale: 0 }), 500);
-      isPlay = false;
+      setTimeout(() => {
+        // 暂停模型骨骼动画
+        for (let d of doms) d.setAttribute("animation-mixer", { timeScale: 0 });
+        isPlay = false;
+      }, 500);
     });
 
     // a-frame and arjs 点击事件绑定
@@ -76,7 +81,7 @@ AFRAME.registerComponent("event-handler", {
 AFRAME.registerComponent("parent-handler", {
   init: function () {
     const { el } = this;
-    const entities = el.querySelectorAll(".entity");
+    const entities = el.querySelectorAll(".e-entity");
 
     for (let [key, item] of entities.entries()) {
       console.log(key, item);
@@ -105,7 +110,7 @@ window.onload = function () {
     alert("open camera");
   });
 
-  document.querySelector("#play-pause-handler").addEventListener("click", (e) => animController(".entity", "isPlay"));
+  document.querySelector("#play-pause-handler").addEventListener("click", (e) => animController(".e-entity", "isPlay"));
 
   document.querySelector("#get-position").addEventListener("click", (e) => {
     getPosition()
@@ -129,8 +134,8 @@ window.onload = function () {
   //     // entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
 
   //     // // 暂停动画播放
-  //     // animController(".entity", "isPlay");
-  //     // document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
+  //     // animController(".e-entity", "isPlay");
+  //     // document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
 
   //     // document.querySelector(".mark").style.display = "flex";
   //   }, 10000);
@@ -186,8 +191,8 @@ function ResetModel() {
     // entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
     // entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
     // // 暂停动画播放
-    // animController(".entity", "isPlay");
-    // document.querySelector(".entity").setAttribute("animation-mixer", { timeScale: 0 });
+    // animController(".e-entity", "isPlay");
+    // document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
     // document.querySelector(".mark").style.display = "flex";
   }, 10000);
 }
