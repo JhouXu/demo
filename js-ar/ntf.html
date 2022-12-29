@@ -156,12 +156,13 @@
         smoothCount="10"
         smoothThreshold="10"
         smoothTolerance=".01"
+        marker-handler
       >
-        <!-- marker-handler -->
         <!-- cursor="rayOrigin: mouse" -->
         <!-- raycaster="objects: .entity" -->
 
-        <a-entity
+        <!-- 跳舞的机器人 -->
+        <!-- <a-entity
           class="e-entity"
           gltf-model="https://jhouxu.github.io/demo/js-ar/glb/BrainStem.glb"
           scale="50 50 50"
@@ -169,19 +170,41 @@
           rotation="-90 0 0"
           gesture-handler="minScale: 0.25; maxScale: 2"
         >
-        </a-entity>
+        </a-entity> -->
 
-        <!-- 小人-->
+        <!-- 走路的小人-->
         <a-entity
           id="animation-model"
-          class="entity"
+          class="e-entity"
           gltf-model="https://jhouxu.github.io/demo/js-ar/glb/CesiumMan.gltf"
-          position="0 -150 0"
+          position="-50 -150 0"
           rotation="-90 0 0"
           scale="50 50 50"
           gesture-handler="minScale: 0.25; maxScale: 2"
         >
           <!-- event-handler -->
+        </a-entity>
+
+        <!-- 企鹅 -->
+        <a-entity
+          class="e-entity"
+          gltf-model="https://jhouxu.github.io/demo/js-ar/glb/qq.glb"
+          scale="1000 1000 1000"
+          position="50 -150 0"
+          rotation="-90 0 0"
+          gesture-handler="minScale: 0.25; maxScale: 2"
+        >
+        </a-entity>
+
+        <!-- 宇航员 -->
+        <a-entity
+          class="e-entity"
+          gltf-model="https://jhouxu.github.io/demo/js-ar/glb/Astronaut.glb"
+          scale="1000 1000 1000"
+          position="0 -150 0"
+          rotation="-90 0 0"
+          gesture-handler="minScale: 0.25; maxScale: 2"
+        >
         </a-entity>
       </a-nft>
 
