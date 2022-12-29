@@ -142,21 +142,33 @@ window.onload = function () {
   // })();
 
   (() => {
-    const MarkLogo = document.querySelector(".mark .logo img");
+    const MarkHangtian = document.querySelector(".mark .hangtian img");
     const MarkBody = document.querySelector(".mark .body img");
-    const MarkIcon = document.querySelector(".mark .icon img");
+    const MarkQq = document.querySelector(".mark .qq img");
 
-    MarkLogo.addEventListener("click", () => {
-      console.log("click logo, window open website");
-      window.open("https://www.yili.com/cms/rest/reception/products/show?id=15");
+    const Mark = document.querySelector(".mark");
+    const Lottery = document.querySelector(".lottery");
+
+    MarkHangtian.addEventListener("click", () => {
+      console.log("click: hangtian");
+      alert("点击了航天器");
     });
 
     MarkBody.addEventListener("click", () => {
-      console.log("click body");
+      console.log("click: shuhua");
+      window.open("https://www.yili.com/cms/rest/reception/products/show?id=15");
     });
 
-    MarkIcon.addEventListener("click", () => {
-      console.log("click icon");
+    MarkQq.addEventListener("click", () => {
+      console.log("click: qq");
+
+      Mark.style.display = "none";
+      Lottery.style.display = "flex";
+    });
+
+    Lottery.addEventListener("click", () => {
+      Mark.style.display = "flex";
+      Lottery.style.display = "none";
     });
   })();
 

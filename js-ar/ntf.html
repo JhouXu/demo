@@ -76,7 +76,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        display: flex;
+        /* display: flex; */
+        display: none;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -90,18 +91,44 @@
         transform: translateY(-10%) scale(2);
       }
 
-      .mark .logo,
+      .mark .hangtian,
       .mark .body,
-      .mark .icon {
+      .mark .qq {
         text-align: center;
       }
 
-      .mark .logo img {
-        transform: translateX(-30%);
+      .mark .hangtian img {
+        width: 100px;
+        transform: translateX(30%);
       }
 
-      .mark .icon img {
-        transform: translate3d(55%, -310%, 0);
+      .mark .body img {
+        width: 50px;
+        transform: translate3d(-20%, 20%, 0);
+      }
+
+      .mark .qq img {
+        width: 50px;
+        transform: translate3d(70%, -80%, 0);
+      }
+
+      .lottery {
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* display: flex; */
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        font-size: 0;
+        background-color: #0004;
+      }
+
+      .lottery img {
+        width: 50%;
       }
     </style>
 
@@ -223,6 +250,10 @@
           <img src="https://jhouxu.github.io/demo/js-ar/images/mark-qq.png" />
         </div>
       </div>
+    </div>
+
+    <div class="lottery">
+      <img src="./images/lottery.png" />
     </div>
 
     <button id="start-ios-wechat-camer">开启 ios 微信端摄像</button>
