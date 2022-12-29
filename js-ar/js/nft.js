@@ -160,13 +160,14 @@ window.onload = function () {
     });
   })();
 
-  const Assets = document.querySelector("#assets");
-  Assets.addEventListener("loaded", (e) => {
-    console.log(e);
-  });
-  Assets.addEventListener("timeout", (e) => {
-    console.log(e);
-  });
+  // 监听 a-assets 资源是否加载完成
+  // const Assets = document.querySelector("#assets");
+  // Assets.addEventListener("loaded", (e) => {
+  //   console.log(e);
+  // });
+  // Assets.addEventListener("timeout", (e) => {
+  //   console.log(e);
+  // });
 };
 
 function animController(domStr, storeName) {
@@ -189,14 +190,20 @@ function ResetModel() {
   // 定时，重置模型位置
   setTimeout(() => {
     console.log("重置样式");
-    // var sceneEl = document.querySelector("a-scene");
-    // var entity = sceneEl.querySelector("a-entity");
-    // entity.setAttribute("position", { x: 120, y: 0, z: -210 });
-    // entity.setAttribute("rotation", { x: -90, y: 0, z: 0 });
-    // entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
-    // // 暂停动画播放
+
+    let sceneEl = document.querySelector("a-scene");
+    let doms = sceneEl.querySelectorAll(".e-entity");
+    for (let entity of doms) {
+      // 隐藏所有模型
+      entity.setAttribute("scale", { x: 0, y: 0, z: 0 });
+      console.log(entity);
+    }
+
+    // 暂停动画播放
     // animController(".e-entity", "isPlay");
     // document.querySelector(".e-entity").setAttribute("animation-mixer", { timeScale: 0 });
-    // document.querySelector(".mark").style.display = "flex";
+
+    // 显示遮罩层
+    document.querySelector(".mark").style.display = "flex";
   }, 10000);
 }
