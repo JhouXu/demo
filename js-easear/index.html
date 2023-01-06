@@ -6,106 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EaseAr</title>
     <style>
-      html,
-      body {
+      * {
         margin: 0;
         padding: 0;
       }
 
-      body {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
+      .container {
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
       }
 
       video,
       canvas {
         position: absolute;
-        width: inherit;
-        height: inherit;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      video {
+        background-color: #333;
+      }
+
+      canvas {
+        opacity: 0;
       }
     </style>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <video id="video"></video>
+    <div class="container">
+      <canvas id="canvas"></canvas>
+      <video id="video" autoplay playsinline muted></video>
+    </div>
   </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.2/axios.js"></script>
   <script>
-    const videoElement = document.querySelector("#video");
-    const videoSetting = videoElement.getBoundingClientRect();
-    const canvasElement = document.querySelector("#canvas");
-    const canvasContext = canvasElement.getContext("2d");
+    window.onload = (event) => {
+      const videoElement = document.querySelector("#video");
+      const videoSetting = videoElement.getBoundingClientRect();
+      const canvasElement = document.querySelector("#canvas");
+      const canvasContext = canvasElement.getContext("2d");
 
-    // 更多参数请查看 https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints
-    const constraints = {
-      audio: false,
-      video: { facingMode: { exact: "environment" } },
-      //video: {facingMode: {exact: 'user'}}
-      //video: true
+      console.log(window.innerWidth, window.innerHeight);
+      console.log(videoSetting);
+
+      // 更多参数请查看 https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints
+      const constraints = {
+        audio: false,
+        video: { facingMode: { exact: "environment" } },
+        //video: {facingMode: {exact: 'user'}}
+        //video: true
+      };
+
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then((stream) => {
+          // videoElement为video元素，将摄像头视频流绑定到video上实时预览
+          videoElement.srcObject = stream;
+          videoElement.style.display = "block";
+          videoElement.play();
+
+          resolve(true);
+        })
+        .catch((err) => {
+          // reject(err);
+          console.log(err);
+        });
+
+      // canvasElement为canvas元素
+      // canvasContext为canvas的context 2d对象
+      // videoSetting为video元素的宽、高
+      canvasContext.drawImage(videoElement, 0, 0, videoSetting.width, videoSetting.height);
+      const image = canvasElement.toDataURL("image/jpeg", 0.5).split("base64,")[1];
+      console.log(canvasElement.toDataURL("iamge/jpeg"));
+
+      // 云图库的Client-end URL
+      const clientendUrl = "https://396191d0bc46776a332f68a7c10d913d.cn1.crs.easyar.com:8443/search";
+      // 云图库的Cloud Token
+      // 到期时间：2023-03-07 03:17:23
+      const token =
+        "ci+MFQsIHrWy8jLWBEz3gyd11jgzIxKjT/ueDLftytsrBtol4vCxO4xFNNZPZVh98NPJ9ph0qPHMxvtiVBBo6zl3DRTXsCl/uywADbNpV0aqJ9UlhRVG6nGpCR1vmCmbYFwsj2z9uwQgTPGAJxJwlrJsBTpkURby9l6UBdpW1osb8sl33VpHlriO2/I6g/VhFIMxSRUW0UH8MT/yFElS57hsgFiZcEyi82HhCw7Ckp05Zcwlif6P3xMioMsskxLkxL2hiw4vn8O/jwNzgbkcOoNjNhnl9GICeOiMtxA6TtJRTMDHN0HkqsnwCWR+1nN3ALXG8d3MBLiLp51eUzrUcjoGJRHev6Yi9oxAXPA6trS/zpijYq8i6/iBcg/qdKPAm7IdoQe05Zj4wSTnj/tfJk9dczYCooqzRgvIfBh0YAEMsg7EbF9U7JsihaU4a2PLp2Ap8MhvnWxHB6g8CTViXMoGXBIQeb22WC1lcJ9016FKFIon2jnghBKQnONzaWRftl/EHJX59sxOwL15d8ISpcQGLITu0A1u4qeHeA628AAiQaoX1oIO+vYU1DyY2bTgr6lfYk1ScSzB/PDIpuvlwzT50ndeMdyLlt0GolK4i8FctbZ9Xg3AWEPH+jCmKsNH";
+      // 云图库的CRS AppId
+      const appId = "b22a733c9d0916019976d9cbaa80a069";
+
+      // axios
+      //   .post(
+      //     clientendUrl,
+      //     {
+      //       image,
+      //       appId,
+      //     },
+      //     {
+      //       headers: {
+      //         "Content-Type": "application/json;Charset=UTF-8",
+      //         Authorization: token,
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     // https://您云图库的Client-end URL/search 在未识到目标时，HTTP状态码为404。
+      //     console.log(res);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+
+      // 文档写法
+      // // 可以使用 jQuery 或 axios 等发送网络请求
+      // const http = new XMLHttpRequest();
+      // http.onload = () => {
+      //   try {
+      //     console.log(http);
+      //     const msg = JSON.parse(http.responseText);
+      //     if (http.status === 200) {
+      //       if (msg.statusCode === 0) {
+      //         resolve(msg.result);
+      //       } else {
+      //         // reject(msg);
+      //         console.log(msg);
+      //       }
+      //     } else {
+      //       // reject(msg);
+      //       console.log(msg);
+      //     }
+      //   } catch (err) {
+      //     // reject(err);
+      //     console.log(err);
+      //   }
+      // };
+      // http.onerror = (err) => {
+      //   // reject(err);
+      //   console.log(err);
+      // };
+      // http.onprogress = (prog) => {
+      //   console.log(prog);
+      // };
+      // // 发送到云图库服务器
+      // http.open("POST", clientendUrl);
+      // http.setRequestHeader("Content-Type", "application/json;Charset=UTF-8");
+      // // 将Cloud Token写在请求头中
+      // http.setRequestHeader("Authorization", token);
+      // // image为截取的摄像头图片数据，如：{image: '/9j/4AAQSkZJRgA...', appId: appId}
+      // // http.send(JSON.stringify(image));
     };
-
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then((stream) => {
-        // videoElement为video元素，将摄像头视频流绑定到video上实时预览
-        videoElement.srcObject = stream;
-        videoElement.style.display = "block";
-        videoElement.play();
-        resolve(true);
-      })
-      .catch((err) => {
-        // reject(err);
-      });
-
-    // canvasElement为canvas元素
-    // canvasContext为canvas的context 2d对象
-    // videoSetting为video元素的宽、高
-    canvasContext.drawImage(videoElement, 0, 0, videoSetting.width, videoSetting.height);
-    const image = canvasElement.toDataURL("image/jpeg", 0.5).split("base64,")[1];
-
-    // 云图库的Client-end URL
-    const clientendUrl = "https://396191d0bc46776a332f68a7c10d913d.cn1.crs.easyar.com:8443";
-    // 云图库的Cloud Token
-    const token =
-      "BmNnPrQ6n8AAhf4lojbn5IHdruKqAJ9UnJaOlP235RXlDj0QyfWfHBa3ln82mC+k1siQKM7VkgZp1VP09Y9kUfqtNlx2BFYoYVT5n/jvogTOj5eo7Nnn5Yvv2d7obwA2AGOlO4X7ckepl5uQ/53cAnc04hNgwIQaPyFjaqNqiDL6dOlGmn71U6tw6FpGEq46NBawKlSLdkOEaUBqzttihWMkxtMSnEd+WpBL9THDqHAqoXzNH6ZJidWjW2S2BD5Gho5+p30l1/m5l9zhqS3Va0KXbiLWT7tQ/7crBm3/I2TWbWheMw9tqWNFS3JbQK8XEjlR0PeepvWkRYxVC8TMryPsx/g5amoVKF3SgKqX1MHEkRLSQlzNAqLdm44twgGsGszhLrwXBXddrJgUutNu+14DaYZkKTxWsG2hoEcA/oDGuRsfxs1s0U+gj6z51suSddTjrMAMFMSRg/WC5PjqNELApMlKi/iI2GA8t1g5V8U=";
-    // 云图库的CRS AppId
-    const appId = "b22a733c9d0916019976d9cbaa80a069";
-
-    // 可以使用 jQuery 或 axios 等发送网络请求
-    const http = new XMLHttpRequest();
-    http.onload = () => {
-      try {
-        const msg = JSON.parse(http.responseText);
-        if (http.status === 200) {
-          if (msg.statusCode === 0) {
-            resolve(msg.result);
-          } else {
-            reject(msg);
-          }
-        } else {
-          reject(msg);
-        }
-      } catch (err) {
-        reject(err);
-      }
-    };
-    http.onerror = (err) => {
-      reject(err);
-    };
-
-    // 发送到云图库服务器
-    http.open("POST", clientendUrl);
-    http.setRequestHeader("Content-Type", "application/json;Charset=UTF-8");
-
-    // 将Cloud Token写在请求头中
-    http.setRequestHeader("Authorization", token);
-
-    // image为截取的摄像头图片数据，如：{image: '/9j/4AAQSkZJRgA...', appId: appId}
-    http.send(JSON.stringify(image));
   </script>
 
-  <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.0/vconsole.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/eruda/2.10.0/eruda.js"></script>
   <script>
-    new VConsole();
+    eruda.init();
   </script>
 </html>
