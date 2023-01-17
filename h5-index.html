@@ -32,7 +32,8 @@
     <iframe id="kivicubeScene"></iframe>
   </body>
   <script>
-    kivicubeIframePlugin.openKivicubeScene(document.querySelector("iframe"), {
+    const iframe = document.querySelector("iframe");
+    kivicubeIframePlugin.openKivicubeScene(iframe, {
       sceneId: "tOzrridlBOvAnthp8EWXj1RV1sk0el8O",
       hideLogo: true,
       hideTitle: false,
@@ -42,6 +43,10 @@
       hideScan: false,
       hideTaskPhoto: false,
       hideBackground: true,
+    });
+
+    iframe.addEventListener("downloadAssetProgress", (e) => {
+      console.log(e);
     });
 
     window.addEventListener("hashchange", function (event) {
