@@ -2,7 +2,7 @@ export const scenes = {
   hotelScene: {
     sceneId: "hotelScene",
     type: "equirectangular",
-    preview: "https://jhouxu.github.io/test/images/panorama_preview.jpg",
+    preview: "https://jhouxu.github.io/demo/h5-pannellumJS/images/panorama_preview.jpg",
     panorama: "https://img.alicdn.com/imgextra/i2/6000000004217/O1CN01djW9bE1h1QprTMP5d_!!6000000004217-0-hotel.jpg",
     hotSpots: [
       {
