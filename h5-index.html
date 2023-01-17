@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iframe</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      iframe#kivicubeScene {
+        width: inherit;
+        height: inherit;
+        /* height: calc(100vw * (4 / 3)); */
+        border: none;
+        transition: all 0.1s ease-in;
+      }
+    </style>
+  </head>
+  <script type="text/javascript" src="https://www.kivicube.com/lib/iframe-plugin.js"></script>
+
+  <body>
+    <iframe id="kivicubeScene"></iframe>
+  </body>
+  <script>
+    kivicubeIframePlugin.openKivicubeScene(document.querySelector("iframe"), {
+      sceneId: "tOzrridlBOvAnthp8EWXj1RV1sk0el8O",
+      // hideLogo: true,
+      // hideTitle: false,
+      // hideDownload: false,
+      // cameraPosition: "back",
+      // hideLoading: true,
+      // hideScan: false,
+      // hideTaskPhoto: false,
+      // hideBackground: true,
+    });
+  </script>
+</html>
