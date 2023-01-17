@@ -40,17 +40,13 @@
     kivicubeIframePlugin.openKivicubeScene(iframe, {
       sceneId: "tOzrridlBOvAnthp8EWXj1RV1sk0el8O",
       hideLogo: true,
-      hideTitle: false,
-      hideDownload: false,
+      hideTitle: true,
+      hideDownload: true,
       cameraPosition: "back",
       hideLoading: true,
-      hideScan: false,
-      hideTaskPhoto: false,
+      hideScan: true,
+      hideTaskPhoto: true,
       hideBackground: true,
-      downloadAssetProgress: (e) => {
-        console.log("openKivicubeScene");
-        console.log(e);
-      },
     });
 
     // 监听场景素材加载进度
