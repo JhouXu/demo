@@ -43,10 +43,15 @@
       hideScan: false,
       hideTaskPhoto: false,
       hideBackground: true,
+      downloadAssetProgress: (e) => {
+        console.log("openKivicubeScene");
+        console.log(e);
+      },
     });
 
     // 监听场景素材加载进度
     iframe.addEventListener("downloadAssetProgress", (e) => {
+      consol.log(1);
       console.log(e);
     });
 
