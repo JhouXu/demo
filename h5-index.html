@@ -45,10 +45,12 @@
       hideBackground: true,
     });
 
+    // 
     iframe.addEventListener("downloadAssetProgress", (e) => {
       console.log(e);
     });
 
+    // 监听地址栏改变
     window.addEventListener("hashchange", function (event) {
       console.log(event);
     });
